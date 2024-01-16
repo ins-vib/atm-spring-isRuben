@@ -19,23 +19,26 @@ public class ATMApplication {
 		System.out.println("Primeres proves");
 
 		Persona persona1 = new Persona();
-		persona1.nom = "Ruben";
-		persona1.cognom = "Garcia";
-		persona1.dni = "1111111A";
+		//persona1.nom = "Ruben";
+		persona1.setNom("Ruben");
+		persona1.setCognom("Garcia");
+		persona1.setDni("1111111A");
 
 		System.out.println(persona1.nom + " " + persona1.cognom);
 		System.out.println(persona1);
 		persona1.parlar();
-		persona1.parlar(idioma = "esp");
+		persona1.parlar(idioma : "esp");
 
 		Persona persona2 = new Persona();
-		persona2.nom = "Alex";
-		persona2.cognom = "Garcia";
-		persona2.dni = "1212121B";
+		persona2.setNom ("Alex");
+		persona2.setCognom("Garcia");
+		persona2.setDni("1212121B");
 
 		System.out.println(persona2.nom + " " + persona2.cognom);
 		System.out.println(persona2);
 		persona2.parlar();
+
+		Persona persona3 = new Persona(nom: "Felip", cognom:"Gomez", dni:"1231231C");
 
 
 	}

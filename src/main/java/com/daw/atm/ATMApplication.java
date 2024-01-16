@@ -26,6 +26,7 @@ public class ATMApplication {
 		System.out.println(persona1.nom + " " + persona1.cognom);
 		System.out.println(persona1);
 		persona1.parlar();
+		persona1.parlar(idioma = "esp");
 
 		Persona persona2 = new Persona();
 		persona2.nom = "Alex";

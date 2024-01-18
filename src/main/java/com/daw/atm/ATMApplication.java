@@ -1,8 +1,11 @@
 package com.daw.atm;
 
+import java.time.LocalDate;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.daw.atm.models.Compte;
 import com.daw.atm.models.Persona;
 
 //import com.daw.atm.model.Person;
@@ -18,27 +21,32 @@ public class ATMApplication {
 		// Proves aquí....
 		System.out.println("Primeres proves");
 
-		Persona persona1 = new Persona();
-		//persona1.nom = "Ruben";
-		persona1.setNom("Ruben");
-		persona1.setCognom("Garcia");
-		persona1.setDni("1111111A");
+		Compte compte1 = new Compte();
+		// compte1.numero = "111111111111111";
+		// compte1.saldo = 33.0;
+		// compte1.DataObertura = LocalDate.now();
 
-		System.out.println(persona1.nom + " " + persona1.cognom);
-		System.out.println(persona1);
-		persona1.parlar();
-		persona1.parlar(idioma : "esp");
+		compte1.setNumero("1111111111111111");
+		compte1.setSaldo(33.0);
+		compte1.setDataObertura(LocalDate.now());
 
-		Persona persona2 = new Persona();
-		persona2.setNom ("Alex");
-		persona2.setCognom("Garcia");
-		persona2.setDni("1212121B");
+		System.out.println(compte1.getNumero() + " " + compte1.getSaldo() + " " + compte1.getDataObertura());
 
-		System.out.println(persona2.nom + " " + persona2.cognom);
-		System.out.println(persona2);
-		persona2.parlar();
+		System.out.println(compte1);
 
-		Persona persona3 = new Persona(nom: "Felip", cognom:"Gomez", dni:"1231231C");
+		Compte compte2 = new Compte("2222222222222222", 10, LocalDate.now());
+
+		System.out.println(compte2);
+		compte2.ingresar(2100);
+		System.out.println(compte2);
+		compte2.retirar(20);
+		System.out.println(compte2);
+		compte2.retirar(2091);
+		System.out.println(compte2);
+
+		// System.out.println(compte1.numero + " " + compte1.saldo + " " + compte1.DataObertura);
+
+
 
 
 	}

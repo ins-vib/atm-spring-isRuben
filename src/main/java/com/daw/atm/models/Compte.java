@@ -8,7 +8,16 @@ public class Compte {
     private String numero; // Numero de compte
     private double saldo; // Saldo de diners
     private LocalDate DataObertura; // Date obertura compte
-    
+    private Persona propietari;
+
+
+     public Persona getPropietari() {
+        return propietari;
+    }
+    public void setPropietari(Persona propietari) {
+        this.propietari = propietari;
+    }
+
     public String getNumero() {
         return numero;
     }
@@ -33,9 +42,9 @@ public class Compte {
         return numero + " " + saldo + " " + DataObertura;
     }
 
-    public Compte(String numero, double saldo, LocalDate dataObertura) {
-        this.numero = numero;
-        this.saldo = saldo;
+    public Compte(String string, int string2, LocalDate dataObertura) {
+        this.numero = string;
+        this.saldo = string2;
         DataObertura = dataObertura;
     }
 
@@ -54,11 +63,5 @@ public class Compte {
             this.saldo = this.saldo - quant;
             return true;
         }
-    }
-
-    
-
-    
-
-    
+    }   
 }

@@ -1,55 +1,31 @@
 package com.daw.atm.models;
 
+import java.time.LocalDate;
+
 public class Persona {
 
     // Atributs
     private String nom;
     private String cognom;
     private String dni;
-    private int edat;
+    private LocalDate dataNaixemenet;
 
     // Metodes
 
-    public void parlar() {
-        System.out.println("Hola!!!!!!");
-        System.out.println("Estic Parlant!!!");
-        System.out.println("Em dic " + this.nom);
-    }
-
     @Override
     public String toString() {
-        return "Persona [nom=" + nom + ", cognom=" + cognom + ", dni=" + dni + ", edat=" + edat + "]";
+        return "Persona [nom=" + nom + ", cognom=" + cognom + ", dni=" + dni + "]";
     }
 
     public Persona() {
-        System.out.println("M'he creat.");
-        edat = 18;
+        
     }
     
-    public Persona(String nom, String cognom, String dni) {
+    public Persona(String nom, String cognom, String dni, LocalDate dataNaixemenet) {
         this.nom = nom;
         this.cognom = cognom;
         this.dni = dni;
-    }
-
-    public void parlar(String idioma) {
-        if(idioma.equals("cat")) {
-            System.out.println("Hola!!!!!!");
-            System.out.println("Estic Parlant!!!");
-            System.out.println("Em dic " + this.nom);
-        }
-
-        if(idioma.equals("esp")) {
-            System.out.println("Hola!!!!!!");
-            System.out.println("Estoy Hablando!!!");
-            System.out.println("Me llamo " + this.nom);
-        }
-    }
-
-    public void cantar() {
-        System.out.println("Hey!!!!!!");
-        System.out.println("LALALALALALALALA!!!");
-        System.out.println("Em dic " + this.nom);
+        this.dataNaixemenet = dataNaixemenet;
     }
 
     public String getNom() {
@@ -76,14 +52,13 @@ public class Persona {
         this.dni = dni;
     }
 
-    public int getEdat() {
-        return edat;
+    public LocalDate getDataNaixemenet() {
+        return dataNaixemenet;
     }
 
-    public void setEdat(int edat) {
-        this.edat = edat;
+    public void setDataNaixemenet(LocalDate dataNaixemenet) {
+        this.dataNaixemenet = dataNaixemenet;
     }
-
     
 
 }

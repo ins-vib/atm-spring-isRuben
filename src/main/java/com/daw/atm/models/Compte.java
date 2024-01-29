@@ -10,6 +10,9 @@ public class Compte {
     private LocalDate DataObertura; // Date obertura compte
     private Persona propietari;
 
+    static public String format = "ES1025";
+    static public int comptador = 0;
+
 
      public Persona getPropietari() {
         return propietari;
@@ -39,13 +42,14 @@ public class Compte {
 
     @Override
     public String toString() {
-        return numero + " " + saldo + " " + DataObertura;
+        return numero + " " + saldo + " " + DataObertura + " " + propietari.getDni();
     }
 
-    public Compte(String string, int string2, LocalDate dataObertura) {
+    public Compte(String string, int string2, LocalDate dataObertura, Persona propietari) {
         this.numero = string;
         this.saldo = string2;
         DataObertura = dataObertura;
+        this.propietari = propietari;
     }
 
     public Compte() {

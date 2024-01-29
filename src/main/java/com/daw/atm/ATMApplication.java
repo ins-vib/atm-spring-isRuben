@@ -48,12 +48,12 @@ public class ATMApplication {
 		Persona p = new Persona("Alex", "Sants", "111111A", LocalDate.parse("2020-01-01"));
 		System.out.println(p);
 
-		Compte c = new Compte(1111111, 200, LocalDate.now());
-		c.setPropietari(p);
+		//Compte c = new Compte(1111111, 200, LocalDate.now());
+		//c.setPropietari(p);
 
-		System.out.println(c.getSaldo()); //200
+		//System.out.println(c.getSaldo()); //200
 
-		System.out.println(c.getPropietari().getNom());
+		//System.out.println(c.getPropietari().getNom());
 
 		//Persona[] persones = new Persona[5];
 		// for (int i = 0; i < persones.length; i++) {
@@ -74,13 +74,26 @@ public class ATMApplication {
 		new Persona("Roman", "Suarez", "55555555A", LocalDate.parse("2020-01-01"))
 		};
 
-		for (int i = 0; i < persones,length; i++) {
+		for (int i = 0; i < persones.length; i++) {
 		System.out.println(persones[1].getNom());
 		}
 
-		for (Persona e : persones) {
-			System.out.println(pe.getNom());
+		//for (Persona e : persones) {
+		//	System.out.println(pe.getNom());
+		//}
+
+		Compte[] comptes = {
+			new Compte("111111111111111A", 1000, LocalDate.now(), persones[0]);
+			new Compte("111111111111111A", 1000, LocalDate.now(), persones[0]);
+			new Compte("111111111111111A", 1000, LocalDate.now(), persones[0]);
+			new Compte("111111111111111A", 1000, LocalDate.now(), persones[0]);
 		}
+
+		for(Compte co: comptes) {
+			System.out.println(co);
+		}
+
+
 
 
 

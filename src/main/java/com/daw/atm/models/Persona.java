@@ -1,6 +1,7 @@
 package com.daw.atm.models;
 
 import java.time.LocalDate;
+import java.time.Period;
 
 public class Persona {
 
@@ -12,14 +13,25 @@ public class Persona {
 
     // Metodes
 
+    public int edat() {
+
+        return Period.between(dataNaixemenet, LocalDate.now()).getYears();
+    }
+
+    static public boolean validarDNI (String dni) {
+        return true;
+    }
+
+    
+    public Persona() {
+        
+    }
+
     @Override
     public String toString() {
         return "Persona [nom=" + nom + ", cognom=" + cognom + ", dni=" + dni + "]";
     }
 
-    public Persona() {
-        
-    }
     
     public Persona(String nom, String cognom, String dni, LocalDate dataNaixemenet) {
         this.nom = nom;

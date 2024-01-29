@@ -15,6 +15,9 @@ import com.daw.atm.models.Persona;
 @SpringBootApplication
 public class ATMApplication {
 
+	/**
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		
 		//SpringApplication.run(ATMApplication.class, args);		
@@ -35,7 +38,7 @@ public class ATMApplication {
 
 		System.out.println(compte1);
 
-		Compte compte2 = new Compte(222222222, 10, LocalDate.now()); // Mostrar
+		/* Compte compte2 = new Compte(222222222, 10, LocalDate.now()); // Mostrar
 
 		System.out.println(compte2);
 		compte2.ingresar(2100); // Ingresar quantitat
@@ -43,7 +46,7 @@ public class ATMApplication {
 		compte2.retirar(20); // Retirar quantitat
 		System.out.println(compte2);
 		compte2.retirar(2091); // Retirar pero no ha de deixar
-		System.out.println(compte2);
+		System.out.println(compte2); */
 
 		Persona p = new Persona("Alex", "Sants", "111111A", LocalDate.parse("2020-01-01"));
 		System.out.println(p);
@@ -82,16 +85,22 @@ public class ATMApplication {
 		//	System.out.println(pe.getNom());
 		//}
 
-		Compte[] comptes = {
-			new Compte("111111111111111A", 1000, LocalDate.now(), persones[0]);
-			new Compte("111111111111111A", 1000, LocalDate.now(), persones[0]);
-			new Compte("111111111111111A", 1000, LocalDate.now(), persones[0]);
-			new Compte("111111111111111A", 1000, LocalDate.now(), persones[0]);
-		}
+		final Compte[] comptes = {
+
+			new Compte(2000, LocalDate.now(), persones[0]);
+			new Compte(3000, LocalDate.now(), persones[1]);
+			new Compte(4000, LocalDate.now(), persones[2]);
+			new Compte(1000, LocalDate.now(), persones[3]);
+		};
 
 		for(Compte co: comptes) {
 			System.out.println(co);
 		}
+
+		System.out.println(Compte.format);
+
+		ATM atm = new ATM("1", "Major, 15", "Tancat");
+		ATM atm2 = new ATM("20", "MAjor, 25", "Tancat");
 
 
 

@@ -45,8 +45,9 @@ public class Compte {
         return numero + " " + saldo + " " + DataObertura + " " + propietari.getDni();
     }
 
-    public Compte(String string, int string2, LocalDate dataObertura, Persona propietari) {
-        this.numero = string;
+    public Compte(int string2, LocalDate dataObertura, Persona propietari) {
+        comptador++;
+        this.numero = format + String.format("%08d", comptador);
         this.saldo = string2;
         DataObertura = dataObertura;
         this.propietari = propietari;
@@ -63,9 +64,9 @@ public class Compte {
     public boolean retirar(double quant) {
         if(quant > saldo) {
             return false;
-        } else {
+        } 
             this.saldo = this.saldo - quant;
             return true;
-        }
+        
     }   
 }

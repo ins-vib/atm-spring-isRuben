@@ -1,6 +1,6 @@
 package com.daw.atm.models;
 
-public class atm {
+public class ATM {
     
     private String codi;
     private String adreça;
@@ -34,7 +34,7 @@ public class atm {
     public void setEstat(String estat) {
         this.estat = estat;
     }
-    public atm(String codi, String adreça, String estat) {
+    public ATM(String codi, String adreça, String estat) {
         this.codi = codi;
         this.adreça = adreça;
         this.estat = estat;

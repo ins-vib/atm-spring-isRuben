@@ -6,10 +6,10 @@ import java.time.Period;
 public class Persona {
 
     // Atributs
-    private String nom;
-    private String cognoms;
-    private String dni;
-    private LocalDate dataNaixement;
+    protected String nom;
+    protected String cognoms;
+    protected String dni;
+    protected LocalDate dataNaixement;
 
     // Metodes
 
@@ -35,7 +35,6 @@ public class Persona {
             if (lletres[index] != Character.toUpperCase((dni.charAt(8))))
                 return false;
             return true;
-            
         } catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println("Error de conversió !!");
@@ -45,7 +44,7 @@ public class Persona {
     }
 
     public Persona() {
-
+        System.out.println("Sóc una persona");
     }
 
     @Override
@@ -91,11 +90,13 @@ public class Persona {
         System.out.println("Em dic " + this.nom);
     }
 
-    public LocalDate getdataNaixement() {
+    public LocalDate getDataNaixement() {
         return dataNaixement;
     }
 
-    public void setAnyNaixement(LocalDate dataNaixement) {
+    public void setDataNaixement(LocalDate dataNaixement) {
         this.dataNaixement = dataNaixement;
     }
+
+    
 }

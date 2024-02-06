@@ -132,12 +132,13 @@ public class ATMApplication {
             Client client2 = new Client("indiaU@prova.com");
             Client client3 = new Client("India", "Ulises", "12345678A", LocalDate.parse("2000-01-01"), "indiaU@prova.com");
 
-            System.out.println(client1);
-            System.out.println(client2);
-            System.out.println(client3);
+            Compte c1 = new Compte();
+            c1.setSaldo(1000);
+            Compte c2 = new Compte();
+            c2.setSaldo(1000);
+            System.out.println(c1);
+            System.out.println(c2);
             
-                
-
     }
 
 }

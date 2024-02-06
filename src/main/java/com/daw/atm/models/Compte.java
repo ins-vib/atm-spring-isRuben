@@ -5,19 +5,25 @@ import java.time.LocalDate;
 public class Compte {
     
     //atributs
-    private String numero;
-    private double saldo;
-    private LocalDate DataObertura;
-    private Persona propietari;
+    protected String numero;
+    protected double saldo;
+    protected LocalDate DataObertura;
+    protected Client propietari;
 
     static public String format ="ES1025";
     static public int comptador=0;
 
+    public boolean transferencia(Compte desti, double quantitat) {
+        if(this.retirar(quantitat)) {
+        return true;
+        }
+        return false;
+    }
 
     public Persona getPropietari() {
         return propietari;
     }
-    public void setPropietari(Persona propietari) {
+    public void setPropietari(Client propietari) {
         this.propietari = propietari;
     }
     
@@ -43,8 +49,9 @@ public class Compte {
     public String toString() {
         return numero +" "+saldo+" "+ DataObertura+ " "+ propietari.getDni();
     }
-    public Compte(double saldo, LocalDate dataObertura, Persona propietari) {
+    public Compte(double saldo, LocalDate dataObertura, Client propietari) {
         comptador++;
+        
         this.numero = format+String.format("%08d", comptador);
         this.saldo = saldo;
         DataObertura = dataObertura;
@@ -63,6 +70,10 @@ public class Compte {
             this.saldo = this.saldo - quantitat;
             return true;
         }
+    }
+
+    public Compte(){
+
     }
     
     

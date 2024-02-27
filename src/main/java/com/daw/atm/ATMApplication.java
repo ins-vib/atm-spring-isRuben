@@ -7,10 +7,14 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.daw.atm.models.ATM;
+import com.daw.atm.models.Banc;
 import com.daw.atm.models.Client;
 import com.daw.atm.models.Compte;
+import com.daw.atm.models.CompteEstalvi;
 import com.daw.atm.models.Empleat;
 import com.daw.atm.models.Persona;
+import com.daw.atm.models.Targeta;
+
 
 
 
@@ -19,10 +23,12 @@ public class ATMApplication {
 
     public static void main(String[] args) {
         
-        //SpringApplication.run(ATMApplication.class, args);        
+        SpringApplication.run(ATMApplication.class, args);        
+
+
 
         // Proves aquí....
-        System.out.println("Primeres proves...");
+        //System.out.println("Primeres proves...");
 
         //compte compte1 = new compte();
         /*compte1.numero = "111111111111";
@@ -77,14 +83,14 @@ public class ATMApplication {
             System.out.println(compte2);
  */
 // semana antes del 5 de febrero
-            /*Persona[] persones ={
+           /*  Persona[] persones ={
                 new Persona("Ana", "Ponts", "12345678A",LocalDate.parse("2002-08-09")),
                 new Persona("India", "Ulises", "23456789B",LocalDate.parse("2002-08-09")),
                 new Persona("Miquel", "Ponts", "34567890D",LocalDate.parse("2002-08-09")),
                 new Persona("Maia", "Iglesias", "45678901E",LocalDate.parse("2002-08-09"))
             };
 
-            Compte[] comptes = {
+           /* Compte[] comptes = {
                 new Compte(1000.0,LocalDate.now(), persones[0]),
                 new Compte(1000.0,LocalDate.now(), persones[1]),
                 new Compte(1000.0,LocalDate.now(), persones[2]),
@@ -119,7 +125,7 @@ public class ATMApplication {
                 System.out.println("No has entrat un enter!");
             }*/
 //5/2/2024
-            Persona p = new Persona();
+          /*   Persona p = new Persona();
             Empleat e  = new Empleat();
             e.setNom("Joan");
             e.setDataNaixement(LocalDate.parse("2000-10-20"));
@@ -136,8 +142,37 @@ public class ATMApplication {
             c1.setSaldo(1000);
             Compte c2 = new Compte();
             c2.setSaldo(1000);
-            System.out.println(c1);
-            System.out.println(c2);
+            c1.transferencia(c2, 500);
+            System.out.println(c1.setSaldo());
+            System.out.println(c2.setSaldo());
+
+            */
+
+        //Banc banc = new Banc();
+            //Compte[] comptes = banc.getLlistaComptes();
+            //for(Compte c: comptes) {
+            //    System.out.println(c);
+            //}
+        //Scanner scanner = new Scanner(System.in);
+        //SpringApplication.run(ATMApplication.class, args);        
+        //Targeta[] targetes= banc.getLlistaTargetes();
+        
+        //Targeta t= banc.getTargeta("11111111A");
+       // if(t==null)System.out.println("No trobada");
+        //else{
+        //    t.validarPin(1234);
+        //}
+
+        //for (Targeta t : targetes){
+        //    System.out.println(t.getCompteCorrent().getPropietari().getNom());
+        //}
+
+        //ATM atm = new ATM("TM123", "Plaça de la Font, 3", "Obert");
+       // boolean acces = atm.assignarTargeta("11112222333A", 1234);
+        // System.out.println(acces);
+
+
+
             
     }
 

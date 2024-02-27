@@ -49,12 +49,12 @@ public class Compte {
     public String toString() {
         return numero +" "+saldo+" "+ DataObertura+ " "+ propietari.getDni();
     }
-    public Compte(double saldo, LocalDate dataObertura, Client propietari) {
+    public Compte(double saldo, Client propietari) {
         comptador++;
-        
+
         this.numero = format+String.format("%08d", comptador);
         this.saldo = saldo;
-        DataObertura = dataObertura;
+        this.DataObertura = LocalDate.now();
         this.propietari= propietari;
     }
     

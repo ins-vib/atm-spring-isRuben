@@ -9,6 +9,11 @@ public class ATMController {
      
     @GetMapping("/")
     public String inici() {
+        return "prova";
+    }
+
+    @GetMapping("/prova")
+    public String prova() {
         return "plantilla";
     }
 }

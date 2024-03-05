@@ -1,0 +1,5 @@
+<form th:action="@{/login}" th:object="${credencials}" method = "POST">
+    Codi Bancari <input type="text" name="number" th:field="*{number}"> <br>
+    PIN <input type="text" name="PIN" th:field="*{PIN}"> <br>
+    <input type="submit" value="Enviar">
+</form>

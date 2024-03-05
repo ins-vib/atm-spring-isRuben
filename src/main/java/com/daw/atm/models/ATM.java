@@ -1,5 +1,8 @@
 package com.daw.atm.models;
 
+import org.springframework.stereotype.Service;
+
+@Service 
 public class ATM {
     
     private String codi;
@@ -21,18 +24,34 @@ public class ATM {
         
     }
 
-    public void ingressar (double quantitat) {
-        if(this.targetaActual != null) {
+    public void ingressar(int quantitat){
+        if(this.targetaActual!=null){
             this.targetaActual.getCompteCorrent().ingressar(quantitat);
         }
         for (int i = 0; i < llistaDiposit.length; i++) {
-            double valor = quantitat/llistaDiposit[i].getValor();
-            double quant = llistaDiposit[i].getQuantitat() + valor;
-            llistaDiposit[i].setQuantitat(quant);
-            valor = quantitat%llistaDiposit[i].getValor();
+            int bitllets = quantitat / llistaDiposit[i].getValor();
+            quantitat=quantitat%llistaDiposit[i].getValor();
+            int total= bitllets+llistaDiposit[i].getQuantitat();
+            llistaDiposit[i].setQuantitat(total);
+            System.out.println(llistaDiposit[i].getValor()+" "+ llistaDiposit[i].getQuantitat());
+
         }
     }
 
+
+    public void retirar(int quantitat){
+        if(this.targetaActual!=null){
+            this.targetaActual.getCompteCorrent().retirar(quantitat);
+        }
+        for (int i = 0; i < llistaDiposit.length; i++) {
+            int bitllets = quantitat / llistaDiposit[i].getValor();
+            quantitat=quantitat%llistaDiposit[i].getValor();
+            int total= llistaDiposit[i].getQuantitat()- bitllets;
+            llistaDiposit[i].setQuantitat(total);
+            System.out.println(llistaDiposit[i].getValor()+" "+ llistaDiposit[i].getQuantitat());
+
+        }
+    }
 
     public void tancar(){
         this.estat="tancat";
@@ -66,19 +85,18 @@ public class ATM {
         this.adreça = adreça;
         this.estat = estat;
         this.banc = new Banc();
-    }
-    @Override
-    public String toString() {
-        return "ATM [codi=" + codi + ", adreça=" + adreça + ", estat=" + estat + "]";
-    }
-
-    public ATM() {
         llistaDiposit = new Diposit[4];
         llistaDiposit[0] = new Diposit(5, 100);
         llistaDiposit[1] = new Diposit(10, 50);
         llistaDiposit[2] = new Diposit(20, 80);
         llistaDiposit[3] = new Diposit(50, 75);
     }
+    @Override
+    public String toString() {
+        return "ATM [codi=" + codi + ", adreça=" + adreça + ", estat=" + estat + "]";
+    }
+
+    
     
     
 }

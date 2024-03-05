@@ -171,8 +171,7 @@ public class ATMApplication {
        // boolean acces = atm.assignarTargeta("11112222333A", 1234);
         // System.out.println(acces);
 
-
-
+        
             
     }
 

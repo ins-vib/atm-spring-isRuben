@@ -46,10 +46,10 @@ public class Banc {
 
         llistaTargetes = new Targeta[5];
             llistaTargetes[0]= new Targeta("11112222333A", LocalDate.parse("2026-01-01"), 230, 1234, (CompteCorrent)llistaComptes[0]);
-            llistaTargetes[1]= new Targeta("11112222333A", LocalDate.parse("2026-01-01"), 230, 1234, (CompteCorrent)llistaComptes[1]);
-            llistaTargetes[2]= new Targeta("11112222333A", LocalDate.parse("2026-01-01"), 230, 1234, (CompteCorrent)llistaComptes[2]);
-            llistaTargetes[3]= new Targeta("11112222333A", LocalDate.parse("2026-01-01"), 230, 1234, (CompteCorrent)llistaComptes[3]);
-            llistaTargetes[4]= new Targeta("11112222333A", LocalDate.parse("2026-01-01"), 230, 1234, (CompteCorrent)llistaComptes[4]);
+            llistaTargetes[1]= new Targeta("11112222333B", LocalDate.parse("2026-01-01"), 230, 1234, (CompteCorrent)llistaComptes[1]);
+            llistaTargetes[2]= new Targeta("11112222333C", LocalDate.parse("2026-01-01"), 230, 1234, (CompteCorrent)llistaComptes[2]);
+            llistaTargetes[3]= new Targeta("11112222333F", LocalDate.parse("2026-01-01"), 230, 1234, (CompteCorrent)llistaComptes[3]);
+            llistaTargetes[4]= new Targeta("11112222333E", LocalDate.parse("2026-01-01"), 230, 1234, (CompteCorrent)llistaComptes[4]);
     }
             
       

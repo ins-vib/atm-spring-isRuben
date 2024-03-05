@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.daw.atm.models.ATM;
+import java.lang.String;
 import com.daw.atm.models.DTO.Credencials;
 
 
@@ -34,9 +35,23 @@ public class ATMController {
     }
 
     @PostMapping("/login")
-    public String obtenirDadesLogin(@ModelAttribute Credencials credencials) {
+    public String obtenirDadesLogin(@ModelAttribute Credencials credencials, Model model) {
         System.out.println(credencials.getNumber());
         System.out.println(credencials.getPIN());
+
+        try {
+
+            int PIN = Integer.parseInt(credencials.getPIN());
+            boolean ok = atm.assignarTargeta(credencials.getNumber(), PIN);
+            model.addAttribute("missatge", "Error en les Credencals");
+            if(!ok) return "login";
+        }
+        catch(Exception e) {
+            model.addAttribute("missatge", "Error, el PIN ha de ser numeric");
+            return "login";
+
+        }
+
         return "prova";
     }
 }

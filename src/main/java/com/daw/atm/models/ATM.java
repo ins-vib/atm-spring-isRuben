@@ -1,7 +1,6 @@
 package com.daw.atm.models;
 
 import org.springframework.stereotype.Service;
-
 @Service 
 public class ATM {
     
@@ -94,6 +93,10 @@ public class ATM {
     @Override
     public String toString() {
         return "ATM [codi=" + codi + ", adreça=" + adreça + ", estat=" + estat + "]";
+    }
+
+    public ATM() {
+        this.banc = new Banc();
     }
 
     

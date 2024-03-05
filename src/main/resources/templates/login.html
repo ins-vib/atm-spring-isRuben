@@ -3,3 +3,5 @@
     PIN <input type="text" name="PIN" th:field="*{PIN}"> <br>
     <input type="submit" value="Enviar">
 </form>
+
+<label th:if="${missatge}" th:text="${missatge}"></label>

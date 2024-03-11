@@ -23,6 +23,10 @@ public class ATM {
         
     }
 
+    public boolean isLogged() {
+        return this.targetaActual != null;
+    }
+
     public void ingressar(int quantitat){
         if(this.targetaActual!=null){
             this.targetaActual.getCompteCorrent().ingressar(quantitat);

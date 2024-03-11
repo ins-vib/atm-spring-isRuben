@@ -37,8 +37,19 @@ public class ATMController {
     }
 
     @PostMapping("/ingressar")
-    public String processaringressar(Model model) {
-        model.addAttribute("diners", new Diners());
+    public String processarIngressar(@ModelAttribute Diners diners, Model model) {
+
+        //if(atm.isLogged()) {
+        //    return "redirect: ";
+        //} 
+        
+        try {
+            int quantitat = Integer.parseInt(diners.getQuantitat());
+            model.addAttribute("missatge", "S'ha realitzat l'ingres.")
+        }
+        catch(Exception e) {
+            model.addAttribute("missatge", "Quantitat ha de ser un enter");
+        }
         return "ingressar";
     }
 

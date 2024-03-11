@@ -1,0 +1,7 @@
+<form th:action="@{/login}" th:object="${diners}" method="POST">
+    Quantitat <input type="text" name="quantitat" th:field="*{quantitat}">
+
+    <input type="submit" value="Ingressar Diners">
+</form>
+
+<label th:if="${missatge}" th:text="${missatge}"></label>

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.daw.atm.models.ATM;
 import java.lang.String;
 import com.daw.atm.models.DTO.Credencials;
+import com.daw.atm.models.DTO.Diners;
 
 
 
@@ -17,21 +18,28 @@ public class ATMController {
 
     @Autowired
     ATM atm;
-     
+
     @GetMapping("/")
-    public String inici() {
-        return "prova";
-    }
-
-    @GetMapping("/prova")
-    public String prova() {
-        return "plantilla";
-    }
-
-    @GetMapping("/login")
     public String mostrarformulariLogin(Model model) {
         model.addAttribute("credencials", new Credencials());
         return "login";
+    }
+
+    @GetMapping("/operacions")
+    public String operacions(Model model) {
+        return "operacions";
+    }
+
+    @GetMapping("/ingressar")
+    public String ingressar(Model model) {
+        model.addAttribute("diners", new Diners());
+        return "ingressar";
+    }
+
+    @PostMapping("/ingressar")
+    public String processaringressar(Model model) {
+        model.addAttribute("diners", new Diners());
+        return "ingressar";
     }
 
     @PostMapping("/login")
@@ -52,6 +60,7 @@ public class ATMController {
 
         }
 
-        return "prova";
+        return "redirect:/operacions";
     }
 }
+

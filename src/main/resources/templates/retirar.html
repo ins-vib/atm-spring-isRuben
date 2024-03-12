@@ -1,42 +1,39 @@
-
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link th:href="@{/css/atm.css}" rel="stylesheet" />   
-    <title>LOGIN</title>
+    <title>ATM</title>
 </head>
 <body>
   
     <div class="container">
         <div class="column" id="buttons-column-1">
-            <a href="#" class="button"></a>
-            <div href="#" class="button"></div>
+            <div class="button"></div>
+            <div class="button"></div>
             <div class="button"></div>
             <div class="button"></div>
          </div>
 
-        <div style=" height: auto;" class="column" id="form-column">  
-            <h3>LOGIN</h3> 
-            <form th:action="@{/login}" th:object="${credencials}" method = "POST">
-                Codi Bancari <input type="text" name="number" th:field="*{number}"> <br>
-                PIN <input type="text" name="PIN" th:field="*{PIN}"> <br>
+        <div class="column" id="form-column">  
+            <h3>RETIRAR DINERS</h3>            
+            <form th:action = "@{/retirar}" th:object ="${diners}" method="POST">
+                Quantitat: <input type="text" name="quantitat" th:field="*{quantitat}">
             
             
-            <label th:if="${missatge}" th:text="${missatge}"></label>           
+                <label th:if="${missatge}" th:text="${missatge}"></label>
         </div>
 
-        <div class="column" id="buttons-column-3"> 
-            <a href="/operacions" type="submit" class="button" id="green-button">
+        <div class="column" id="buttons-column-3">           
+            <button type="submit" class="button" id="green-button">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:#006400;"><circle cx="12" cy="12" r="10"></circle>
                 </svg> <label>Confirmar</label>
-            </a>  
-            </form>      
+            </button>  
+            </form>
             <a href="#" class="button"></a>
             <a href="#" class="button"></a>
-            <a href="/" class="button" id="red-button">
+            <a href="/operacions" class="button" id="red-button">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:#ff0000;"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
                 <label>Cancel·lar</label>
             </a>

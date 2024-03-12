@@ -1,4 +1,35 @@
-<a href="/ingressar">Ingressar</a>
-<a href="">Treure</a>
-<a href="">Transferencia</a>
-<a href="">Canviar PIN</a>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link th:href="@{/css/atm.css}" rel="stylesheet" />   
+    <title>Operacions</title>
+</head>
+<body>
+  
+    <div class="container">
+        <div class="column" id="buttons-column-1">
+            <a href="/ingressar" class="button">Ingressar ></a>
+            <div href="#" class="button">Transferencia ></div>
+            <div class="button"></div>
+            <div class="button"></div>
+         </div>
+
+        <div style="text-align: center; height: auto;" class="column" id="form-column">  
+            <h3>OPERACIONS</h3>            
+        </div>
+
+        <div class="column" id="buttons-column-3"> 
+            <a href="/retirar" class="button">< Retirar</a>          
+            <a href="#" class="button">< Canviar PIN</a>
+            <a href="#" class="button"></a>
+            <a href="/" class="button" id="red-button">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:#ff0000;"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                <label>Cancel·lar</label>
+            </a>
+            </div>
+    </div>
+
+</body>
+</html>

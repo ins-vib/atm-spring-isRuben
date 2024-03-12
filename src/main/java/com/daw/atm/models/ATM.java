@@ -88,11 +88,6 @@ public class ATM {
         this.adreça = adreça;
         this.estat = estat;
         this.banc = new Banc();
-        llistaDiposit = new Diposit[4];
-        llistaDiposit[0] = new Diposit(5, 100);
-        llistaDiposit[1] = new Diposit(10, 50);
-        llistaDiposit[2] = new Diposit(20, 80);
-        llistaDiposit[3] = new Diposit(50, 75);
     }
     @Override
     public String toString() {
@@ -101,6 +96,11 @@ public class ATM {
 
     public ATM() {
         this.banc = new Banc();
+        llistaDiposit = new Diposit[4];
+        llistaDiposit[0] = new Diposit(5, 100);
+        llistaDiposit[1] = new Diposit(10, 50);
+        llistaDiposit[2] = new Diposit(20, 80);
+        llistaDiposit[3] = new Diposit(50, 75);
     }
 
     

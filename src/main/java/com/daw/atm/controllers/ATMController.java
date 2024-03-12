@@ -45,12 +45,34 @@ public class ATMController {
         
         try {
             int quantitat = Integer.parseInt(diners.getQuantitat());
-            model.addAttribute("missatge", "S'ha realitzat l'ingres.")
+            model.addAttribute("missatge", "S'ha realitzat l'ingres.");
         }
         catch(Exception e) {
             model.addAttribute("missatge", "Quantitat ha de ser un enter");
         }
         return "ingressar";
+    }
+
+    @GetMapping("/retirar")
+    public String retirar(Model model) {
+        model.addAttribute("diners", new Diners());
+        return "retirar";
+    }
+
+    @PostMapping("/retirar")
+    public String processarretirar(@ModelAttribute Diners diners, Model model) {
+        
+        //if(!atm.isLogged()){
+        //    return "redirect:";
+        //}
+        try {
+            int quantitat= Integer.parseInt(diners.getQuantitat());
+            atm.retirar(quantitat);
+            model.addAttribute("missatge","S'ha efectuat el retir");
+        } catch (Exception e) {
+            model.addAttribute("missatge","Quantitat ha de ser un enter");
+        }
+        return "retirar";
     }
 
     @PostMapping("/login")

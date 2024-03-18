@@ -87,6 +87,13 @@ public class Banc {
         return llistaTargetes;
     }
 
+    public Compte getCompte (String numero) {
+        for(Compte compte: llistaComptes) {
+            if(compte.getNumero().equals(numero)) return compte;
+        }
+        return null;
+    }
+
 
     
 }

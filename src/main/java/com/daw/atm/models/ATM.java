@@ -103,6 +103,16 @@ public class ATM {
         llistaDiposit[3] = new Diposit(50, 75);
     }
 
+    public boolean transferencia(double quantitat, String numero) {
+        Compte desti = banc.getCompte(numero);
+        if(desti == null) return false;
+
+        return targetaActual.getCompteCorrent().transferencia(null, quantitat);
+    }
+
+
+    
+
     
     
     

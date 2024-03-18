@@ -1,10 +1,12 @@
+
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link th:href="@{/css/atm.css}" rel="stylesheet" />   
-    <title>Banc | Ingressar</title>
+    <title>Banc | Transferencia</title>
 </head>
 <body>
   
@@ -17,17 +19,15 @@
          </div>
 
         <div class="column" id="form-column">  
-            <h3>INGRESSAR DINERS</h3>            
-            <form th:action="@{/ingressar}" th:object="${diners}" method="POST">
+            <h3 style="text-align: center; height: auto;">TRANSFERIR</h3>            
+            <form th:action="@{/transferir}" th:object ="${transfer}" method="POST">
                 Quantitat: <input type="text" name="quantitat" th:field="*{quantitat}">
-            
-                
+                Nº Compte: <input type="text" name="numero" th:field="*{numero}"> 
                 <label th:if="${missatge}" th:text="${missatge}"></label>
-            
         </div>
 
-        <div class="column" id="buttons-column-3">   
-            <button  type="submit" class="button" id="green-button">
+        <div class="column" id="buttons-column-3">           
+            <button type="submit" class="button" id="green-button">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:#006400;"><circle cx="12" cy="12" r="10"></circle>
                 </svg> <label>Confirmar</label>
             </button>  

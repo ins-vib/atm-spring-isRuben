@@ -10,6 +10,7 @@ import com.daw.atm.models.ATM;
 import java.lang.String;
 import com.daw.atm.models.DTO.Credencials;
 import com.daw.atm.models.DTO.Diners;
+import com.daw.atm.models.DTO.Transfer;
 
 
 
@@ -74,6 +75,28 @@ public class ATMController {
         }
         return "retirar";
     }
+
+    @GetMapping ("/transferir")
+    public String transferir(Model model) {
+        model.addAttribute("transfer", new Transfer());
+        return "transferir";
+    }
+
+    @PostMapping("/transferir")
+    public String processarTransferencia(@ModelAttribute Transfer transf, Model model) {
+    try {
+        double quantitat = Double.parseDouble(transf.getQuantitat());
+        if(atm.transferencia(quantitat, transf.getNumero()) ) {
+            model.addAttribute("missatge", "Operacio Efectuada");
+        } else {
+            model.addAttribute("missatge", "Operacio Incorrecta");
+        }
+    }
+    catch(Exception e){
+        model.addAttribute("missatge", "Error en la Transferencia")
+    }
+    return "transferir";
+}
 
     @PostMapping("/login")
     public String obtenirDadesLogin(@ModelAttribute Credencials credencials, Model model) {

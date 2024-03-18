@@ -62,7 +62,29 @@ body {
     text-align: center;
     text-decoration: none;
     color: #fff;
-    background-color: #9c96967d;
+    background-color: #9c96966e;
+    border: 1px solid #333;
+    border-radius: 25px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+.button1 {
+    font-size: 12px; 
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+    
+    height: 60px;
+    width: 120px; 
+   
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    background-color: #35323283;
     border: 1px solid #333;
     border-radius: 25px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);

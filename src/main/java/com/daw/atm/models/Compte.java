@@ -1,6 +1,7 @@
 package com.daw.atm.models;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class Compte {
     
@@ -12,6 +13,9 @@ public class Compte {
 
     static public String format ="ES1025";
     static public int comptador=0;
+
+    //protected Operacio[] llistaMoviments;
+    protected ArrayList<Operacio> llistaMoviments;
 
     public boolean transferencia(Compte desti, double quantitat) {
         if(this.retirar(quantitat)) {
@@ -56,6 +60,20 @@ public class Compte {
         this.saldo = saldo;
         this.DataObertura = LocalDate.now();
         this.propietari= propietari;
+        //llistaMoviments = new Operacio[10];
+        llistaMoviments = new ArrayList<Operacio>();
+        llistaMoviments.add(new Operacio());
+        llistaMoviments.add(new Operacio());
+        llistaMoviments.add(new Operacio());
+        
+        llistaMoviments.remove(0);
+        //for(int i = 0; i < llistaMoviments.size(); i++) {
+        //System.out.println(llistaMoviments.get(i));
+        //}
+
+        for(Operacio operacio: llistaMoviments) {
+            System.out.println(operacio);
+        }
     }
     
 

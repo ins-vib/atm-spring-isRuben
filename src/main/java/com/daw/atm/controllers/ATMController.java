@@ -54,6 +54,11 @@ public class ATMController {
         return "ingressar";
     }
 
+    @GetMapping("/moviments")
+    public String moviments(Model model) {
+        return "moviments";
+    }
+
     @GetMapping("/retirar")
     public String retirar(Model model) {
         model.addAttribute("diners", new Diners());
@@ -93,7 +98,7 @@ public class ATMController {
         }
     }
     catch(Exception e){
-        model.addAttribute("missatge", "Error en la Transferencia")
+        model.addAttribute("missatge", "Error en la Transferencia");
     }
     return "transferir";
 }

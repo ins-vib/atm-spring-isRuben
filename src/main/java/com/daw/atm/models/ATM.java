@@ -13,6 +13,10 @@ public class ATM {
 
     private Diposit llistaDiposit[];
 
+    public Targeta getTargetaActual() {
+        return targetaActual;
+    }
+
     public boolean assignarTargeta(String numero, int PIN) {
         
         Targeta t = banc.getTargeta(numero);

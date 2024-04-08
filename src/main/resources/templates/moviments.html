@@ -1,10 +1,12 @@
+
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link th:href="@{/css/atm.css}" rel="stylesheet" />   
-    <title>Banc | Operacions</title>
+    <title>Banc | Retirar</title>
 </head>
 <body>
   
@@ -16,12 +18,19 @@
             <div class="button"></div>
          </div>
 
-        <div style="text-align: center; height: auto;" class="column" id="form-column">  
-            <h3>OPERACIONS</h3>            
+        <div class="column" id="form-column">  
+            <h3>MOVIMENTS</h3>            
+            <form th:action = "@{/retirar}" th:object ="${diners}" method="POST">
+                <select size="10">
+                    <option th:each="operacio: ${operacions}" th:text="${operacio}">
+                
+                    </option>
+                </select>
         </div>
 
-        <div class="column" id="buttons-column-3"> 
-            <a href="#" class="button"></a>          
+        <div class="column" id="buttons-column-3">           
+            <a href="#" class="button"></a>
+            </form>
             <a href="#" class="button"></a>
             <a href="#" class="button"></a>
             <a href="/operacions" class="button" id="red-button">

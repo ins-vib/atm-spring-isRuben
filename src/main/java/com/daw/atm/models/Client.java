@@ -2,6 +2,9 @@ package com.daw.atm.models;
 
 import java.time.LocalDate;
 
+import jakarta.persistence.Entity;
+
+@Entity
 public class Client extends Persona {
     
     private String email;

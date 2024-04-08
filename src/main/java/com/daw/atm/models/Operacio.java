@@ -25,7 +25,7 @@ public class Operacio {
     
     @Override
     public String toString() {
-        return "Operacio [data = " + data + "]";
+        return "Operacio [data = " + data + "," + "descripcio = " + descripcio + "]";
     }
 
     

@@ -3,9 +3,16 @@ package com.daw.atm.models;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class Compte {
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Inheritance;
+
+@Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+public abstract class Compte {
     
     //atributs
+    @Id
     protected String numero;
     protected double saldo;
     protected LocalDate DataObertura;
@@ -22,6 +29,10 @@ public class Compte {
         return true;
         }
         return false;
+    }
+
+    public ArrayList<Operacio> getLlistaMoviments() {
+        return llistaMoviments;
     }
 
     public Persona getPropietari() {
@@ -77,8 +88,11 @@ public class Compte {
     }
     
 
-    public void ingressar(double quantitat){
+    public void ingressar(int quantitat){
         this.saldo= this.saldo +quantitat;
+        Operacio op = new Operacio();
+        op.setDescripcio("Ingres de" + quantitat + "€");
+        llistaMoviments.add(op);
     }
     public boolean retirar(double quantitat){
         if (quantitat>saldo) {
@@ -86,6 +100,10 @@ public class Compte {
         }
         else{
             this.saldo = this.saldo - quantitat;
+            Operacio op = new Operacio();
+            op.setDescripcio("Retir de" + quantitat + "€");
+            llistaMoviments.add(op);
+            System.out.println(op);
             return true;
         }
     }

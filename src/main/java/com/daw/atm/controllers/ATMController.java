@@ -7,7 +7,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.daw.atm.models.ATM;
+import com.daw.atm.models.Operacio;
+
 import java.lang.String;
+import java.util.ArrayList;
+
 import com.daw.atm.models.DTO.Credencials;
 import com.daw.atm.models.DTO.Diners;
 import com.daw.atm.models.DTO.Transfer;
@@ -28,6 +32,8 @@ public class ATMController {
 
     @GetMapping("/operacions")
     public String operacions(Model model) {
+        String usuari= atm.getTargetaActual().getCompteCorrent().getPropietari().getNom();
+        model.addAttribute("usuari", usuari);
         return "operacions";
     }
 
@@ -54,9 +60,12 @@ public class ATMController {
         return "ingressar";
     }
 
-    @GetMapping("/moviments")
-    public String moviments(Model model) {
+   @GetMapping("/moviments")
+    public String moviments(Model model){
+        ArrayList<Operacio> operacions= atm.getTargetaActual().getCompteCorrent().getLlistaMoviments();
+        model.addAttribute("operacions", operacions);
         return "moviments";
+
     }
 
     @GetMapping("/retirar")
@@ -105,8 +114,8 @@ public class ATMController {
 
     @PostMapping("/login")
     public String obtenirDadesLogin(@ModelAttribute Credencials credencials, Model model) {
-        System.out.println(credencials.getNumber());
-        System.out.println(credencials.getPIN());
+        System.out.println("User:" + credencials.getNumber());
+        System.out.println("PIN:" + credencials.getPIN());
 
         try {
 

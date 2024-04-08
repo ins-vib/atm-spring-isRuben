@@ -3,7 +3,17 @@ package com.daw.atm.models;
 import java.time.LocalDate;
 import java.time.Period;
 
-public class Persona {
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
+
+@Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+public abstract class Persona {
+
+    @Id
+    private long id;
 
     // Atributs
     protected String nom;
@@ -12,7 +22,6 @@ public class Persona {
     protected LocalDate dataNaixement;
 
     // Metodes
-
     public int edat() {
         return Period.between(dataNaixement, LocalDate.now()).getYears();
     }

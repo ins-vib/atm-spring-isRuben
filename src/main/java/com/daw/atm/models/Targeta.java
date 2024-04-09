@@ -3,8 +3,14 @@ package com.daw.atm.models;
 import java.time.LocalDate;
 import java.util.Scanner;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+
+@Entity 
 public class Targeta {
     public static int MAX_INTENTS = 3;
+    @Id
     protected String numero;
     protected LocalDate dataCaducitat;
     protected int cvv;
@@ -13,6 +19,7 @@ public class Targeta {
     protected boolean bloquejada;
     protected int numIntents;
 
+    @ManyToOne
     private CompteCorrent compteCorrent;
 
     public CompteCorrent getCompteCorrent() {

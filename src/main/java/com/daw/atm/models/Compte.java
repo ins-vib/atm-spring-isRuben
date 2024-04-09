@@ -7,21 +7,30 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 
+import jakarta.persistence.InheritanceType;
+
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Transient;
+
+
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public abstract class Compte {
+public abstract class Compte{
     
     //atributs
     @Id
     protected String numero;
     protected double saldo;
     protected LocalDate DataObertura;
+
+    @ManyToOne
     protected Client propietari;
 
     static public String format ="ES1025";
     static public int comptador=0;
 
     //protected Operacio[] llistaMoviments;
+    @Transient
     protected ArrayList<Operacio> llistaMoviments;
 
     public boolean transferencia(Compte desti, double quantitat) {

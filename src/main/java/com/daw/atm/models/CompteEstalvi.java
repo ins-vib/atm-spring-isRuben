@@ -2,6 +2,9 @@ package com.daw.atm.models;
 
 import java.time.LocalDate;
 
+import jakarta.persistence.Entity;
+
+@Entity
 public class CompteEstalvi extends Compte {
     static final public double QUANTITAT_MINIMA = 1000;
     private double interes;

@@ -24,7 +24,7 @@ public class Banc {
 
 
     public Banc(){
-        llistaClients = new Client[5];
+        llistaClients = new Client[6];
             llistaClients[0] = new Client("Ana", "Ponts", "12345678A",LocalDate.parse("2002-08-09"),"aponts@prova.com");
             llistaClients[1] = new Client("India", "Ulises", "23456789B",LocalDate.parse("2000-01-09"),"iulises@prova.com");
             llistaClients[2] = new Client("Miquel", "Ponts", "34567890D",LocalDate.parse("2002-08-09"),"mponts@prova.com");
@@ -32,20 +32,20 @@ public class Banc {
             llistaClients[4] = new Client("Nil", "Iglesias", "45678901E",LocalDate.parse("2002-08-09"),"niglesias@prova.com");
             llistaClients[5] = new Client("Francesc", "Iglesias", "45678901V",LocalDate.parse("2002-08-09"),"francesciglesias@prova.com");
         
-        llistaComptes = new Compte[10];
+        llistaComptes = new Compte[12];
             llistaComptes[0]= new CompteCorrent(1000.0, llistaClients[0]);
             llistaComptes[1]= new CompteCorrent(1000.0, llistaClients[1]);
             llistaComptes[2]= new CompteCorrent(1000.0, llistaClients[2]);
             llistaComptes[3]= new CompteCorrent(1000.0, llistaClients[3]);
             llistaComptes[4]= new CompteCorrent(1000.0, llistaClients[4]);
-            llistaComptes[4]= new CompteCorrent(1000.0, llistaClients[5]);
+            llistaComptes[5]= new CompteCorrent(1000.0, llistaClients[5]);
 
-            llistaComptes[5]= new CompteEstalvi(1000.0, llistaClients[0],2);
-            llistaComptes[6]= new CompteEstalvi(1000.0, llistaClients[1],2);
-            llistaComptes[7]= new CompteEstalvi(1000.0, llistaClients[2],2);
-            llistaComptes[8]= new CompteEstalvi(1000.0, llistaClients[3],2);
-            llistaComptes[9]= new CompteEstalvi(1000.0, llistaClients[4],2);
-            llistaComptes[9]= new CompteEstalvi(1000.0, llistaClients[5],2);
+            llistaComptes[6]= new CompteEstalvi(1000.0, llistaClients[0],2);
+            llistaComptes[7]= new CompteEstalvi(1000.0, llistaClients[1],2);
+            llistaComptes[8]= new CompteEstalvi(1000.0, llistaClients[2],2);
+            llistaComptes[9]= new CompteEstalvi(1000.0, llistaClients[3],2);
+            llistaComptes[10]= new CompteEstalvi(1000.0, llistaClients[4],2);
+            llistaComptes[11]= new CompteEstalvi(1000.0, llistaClients[5],2);
 
         llistaTargetes = new Targeta[6];
             llistaTargetes[0]= new Targeta("11112222333A", LocalDate.parse("2026-01-01"), 230, 1234, (CompteCorrent)llistaComptes[0]);

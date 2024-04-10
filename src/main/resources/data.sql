@@ -1,6 +1,7 @@
-delete from compte_corrent;
-delete from compte_estalvi;
 delete from targeta;
+delete from compte_estalvi;
+delete from compte_corrent;
+
 delete from client;
 INSERT INTO `client` (`id`, `cognoms`, `data_naixement`, `dni`, `nom`, `email`) VALUES ('1', 'Pont Sants', '2014-04-01', '12312344A', 'Ana', 'ana@gmail.com');
 INSERT INTO `client` (`id`, `cognoms`, `data_naixement`, `dni`, `nom`, `email`) VALUES ('2', 'Ricard', '2014-04-01', '12312344A', 'Raul', 'raul@gmail.com');

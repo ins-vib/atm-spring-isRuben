@@ -111,7 +111,6 @@ public class ATMController {
     }
     return "transferir";
 }
-
     @PostMapping("/login")
     public String obtenirDadesLogin(@ModelAttribute Credencials credencials, Model model) {
         System.out.println("User:" + credencials.getNumber());

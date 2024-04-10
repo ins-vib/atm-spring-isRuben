@@ -1,0 +1,44 @@
+
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link th:href="@{/css/atm.css}" rel="stylesheet" />   
+    <title>Banc | Retirar</title>
+</head>
+<body>
+  
+    <div class="container">
+        <div class="column" id="buttons-column-1">
+            <div class="button"></div>
+            <div class="button"></div>
+            <div class="button"></div>
+            <div class="button"></div>
+         </div>
+
+        <div class="column" id="form-column">  
+            <h3>MOVIMENTS</h3>            
+            <form th:action = "@{/retirar}" th:object ="${diners}" method="POST">
+                <select size="10">
+                    <option th:each="operacio: ${operacions}" th:text="${operacio}">
+                
+                    </option>
+                </select>
+        </div>
+
+        <div class="column" id="buttons-column-3">           
+            <a href="#" class="button"></a>
+            </form>
+            <a href="#" class="button"></a>
+            <a href="#" class="button"></a>
+            <a href="/operacions" class="button" id="red-button">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:#ff0000;"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                <label>Cancel·lar</label>
+            </a>
+            </div>
+    </div>
+
+</body>
+</html>

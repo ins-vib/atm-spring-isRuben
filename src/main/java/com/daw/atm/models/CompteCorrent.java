@@ -4,7 +4,10 @@ import jakarta.persistence.Entity;
 
 @Entity
 public class CompteCorrent extends Compte{
-    
+
+    public CompteCorrent() {
+        
+    }
     public CompteCorrent(double saldo, Client propietari) {
         super(saldo, propietari);
     }

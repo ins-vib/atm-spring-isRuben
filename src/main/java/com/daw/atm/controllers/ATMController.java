@@ -46,9 +46,9 @@ public class ATMController {
     @PostMapping("/ingressar")
     public String processarIngressar(@ModelAttribute Diners diners, Model model) {
 
-        //if(atm.isLogged()) {
-        //    return "redirect: ";
-        //} 
+        if(atm.isLogged()) {
+            return "redirect: ";
+        } 
         
         try {
             int quantitat = Integer.parseInt(diners.getQuantitat());

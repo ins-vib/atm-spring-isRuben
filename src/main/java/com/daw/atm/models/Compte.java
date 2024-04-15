@@ -118,7 +118,7 @@ public abstract class Compte{
     }
 
     public Compte(){
-
+        llistaMoviments = new ArrayList<Operacio>();
     }
     
     

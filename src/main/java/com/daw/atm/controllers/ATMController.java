@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 import com.daw.atm.models.DTO.Credencials;
 import com.daw.atm.models.DTO.Diners;
+import com.daw.atm.models.DTO.NuevoPin;
 import com.daw.atm.models.DTO.Transfer;
 
 
@@ -131,5 +132,31 @@ public class ATMController {
 
         return "redirect:/operacions";
     }
+
+     @GetMapping("/cambiarPin")
+    public String mostrarFormularioCambiarPin(Model model) {
+        model.addAttribute("nuevoPin", new NuevoPin());
+        return "cambiar_pin";
+    }
+
+    @PostMapping("/cambiarPin")
+public String procesarCambioPin(@ModelAttribute NuevoPin nuevoPin, Model model) {
+    try {
+        int pinActual = Integer.parseInt(nuevoPin.getPinActual());
+        int nuevoPinValue = Integer.parseInt(nuevoPin.getNuevoPin());
+        
+        if (atm.cambiarPin(pinActual, nuevoPinValue)) {
+            model.addAttribute("mensaje", "PIN cambiado exitosamente.");
+        } else {
+            model.addAttribute("mensaje", "No se pudo cambiar el PIN. Verifica tus credenciales.");
+        }
+    } catch (NumberFormatException e) {
+        model.addAttribute("mensaje", "El PIN debe ser numérico.");
+    }
+    return "cambiar_pin";
 }
+
+    
+}
+
 

@@ -114,6 +114,11 @@ public class ATM {
         return targetaActual.getCompteCorrent().transferencia(null, quantitat);
     }
 
+    public boolean cambiarPIN(int nuevoPin) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'cambiarPIN'");
+    }
+
 
     
 

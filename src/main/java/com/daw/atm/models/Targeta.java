@@ -26,10 +26,22 @@ public class Targeta {
         return compteCorrent;
     }
 
-    public boolean validarPin(int pin) {
+    public boolean validarPin(String string) {
         
         if (this.bloquejada) return false;
-        if(pin==this.pin){
+        if(string==this.pin){
+            this.numIntents=0;
+         return true; 
+        }
+        this.numIntents++;
+        if (this.numIntents==MAX_INTENTS) this.bloquejada = true;
+            return false;
+        }
+
+        public boolean validarPin2(int string) {
+        
+        if (this.bloquejada) return false;
+        if(string==this.pin){
             this.numIntents=0;
          return true; 
         }
@@ -101,7 +113,8 @@ public class Targeta {
     }
     public void setNumIntents(int numIntents) {
         this.numIntents = numIntents;
-    } 
+    }
+
 
 
 }

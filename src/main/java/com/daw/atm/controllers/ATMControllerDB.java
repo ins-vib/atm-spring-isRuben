@@ -99,4 +99,39 @@ public class ATMControllerDB {
         }
         return "ATMDB/ingressar";
     }
+
+    @GetMapping("/cambiarPin")
+    public String CambiarPin(Model model) {
+        model.addAttribute("credencials", new Credencials());
+        return "ATMDB/cambiarPin";
+    }
+    
+    @PostMapping("/cambiarPin")
+    public String CambioPin(@ModelAttribute Credencials credencials, Model model, HttpSession session) {
+
+        try {
+            String numeroTargetaActual = (String) session.getAttribute("numeroTargetaActual");
+            String nuevoPin = credencials.getPIN();
+
+            Optional<Targeta> optional = targetaRepository.findById(numeroTargetaActual);
+
+            if(optional.isPresent()) {
+                Targeta targetaActual = optional.get();
+
+                if(targetaActual.validarPin(credencials.getPIN())) {
+                    targetaActual.setPin(nuevoPin);
+                    targetaRepository.save(targetaActual);
+                    model.addAttribute("missatge", "PIN cambiado.");
+
+                    return "ATMDB/cambiarPin";
+                }
+            }
+        } catch (Exception e) {
+            model.addAttribute("missatge", "Hay un Error." + e.getMessage());
+        }
+
+        return "ATMDB/cambiarPin";
+    }
+
+
 }

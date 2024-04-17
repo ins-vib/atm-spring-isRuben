@@ -95,6 +95,7 @@ public abstract class Compte{
             System.out.println(operacio);
         }
     }
+
     
 
     public void ingressar(int quantitat){
@@ -115,6 +116,17 @@ public abstract class Compte{
             System.out.println(op);
             return true;
         }
+    }
+
+    public boolean transferencia(Compte desti, int quantitat) {
+        if(this.retirar(quantitat)){
+            desti.ingressar(quantitat);
+            Operacio op = new Operacio();
+            op.setDescripcio("Transferencia de " + quantitat + "€ - Compte " + desti);
+            llistaMoviments.add(op);
+            return true;
+        }
+        return false;
     }
 
     public Compte(){

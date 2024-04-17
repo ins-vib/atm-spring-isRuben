@@ -1,0 +1,10 @@
+<form action="/ATM/cambiarPin" method="post">
+    <label for="pinActual"> PIN Actual:</label><br>
+    <input type="password" id="pinActual" name="PIN" required><br><br>
+
+    <label for="nuevoPin"> Nuevo PIN:</label><br>
+    <input type="password" id="nuevoPin" name="nuevoPIN" required><br><br>
+
+    <button type="submit">Cambiar PIN</button>
+</form>
+<div th:if="${missatge}" th:text="${missatge}" style="color: red"></div>

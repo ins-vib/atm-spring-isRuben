@@ -20,9 +20,11 @@
 
         <div class="column" id="form-column">  
             <h3 style="text-align: center; height: auto;">TRANSFERIR</h3>            
-            <form th:action="@{/transferir}" th:object ="${transfer}" method="POST">
+            <form th:action="@{/transferencia}" th:object ="${transfer}" method="POST">
                 Quantitat: <input type="text" name="quantitat" th:field="*{quantitat}">
-                Nº Compte: <input type="text" name="numero" th:field="*{numero}"> 
+                <select>
+                    <option th:value ="${compte}" th:each="compte : ${llistacomptes}" th:text="${compte}"></option>
+                </select>
                 <label th:if="${missatge}" th:text="${missatge}"></label>
         </div>
 

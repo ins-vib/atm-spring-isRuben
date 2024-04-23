@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link th:href="@{/css/atm.css}" rel="stylesheet" />   
-    <title>Banc | Cambiar PIN</title>
+    <title>Banc | Retirar</title>
 </head>
 <body>
   
@@ -17,33 +17,27 @@
          </div>
 
         <div class="column" id="form-column">  
-            <h3>CAMBIAR PIN</h3>            
-            <form th:action="@{/cambiarPin}" th:object="${cambioPinForm}" method="POST">
-                <label for="numeroCuenta">Número de Cuenta:</label>
-                <input type="text" id="numeroCuenta" name="numeroCuenta" th:field="*{numeroCuenta}" required><br><br>
-                
-                <label for="pinActual">PIN Actual:</label>
-                <input type="password" id="pinActual" name="pinActual" th:field="*{pinActual}" required><br><br>
-                
-                <label for="nuevoPin">Nuevo PIN:</label>
-                <input type="password" id="nuevoPin" name="nuevoPin" th:field="*{nuevoPin}" required><br><br>
-                
+            <h3>INGRESAR DINERS</h3>            
+            <form th:action = "@{/ingressar}" th:object ="${diners}" method="POST">
+                Quantitat: <input type="text" name="quantitat" th:field="*{quantitat}">
+            
+            
                 <label th:if="${missatge}" th:text="${missatge}"></label>
-            </form>
         </div>
 
-        <div class="column" id="buttons-column-3">   
+        <div class="column" id="buttons-column-3">           
             <button type="submit" class="button" id="green-button">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:#006400;"><circle cx="12" cy="12" r="10"></circle>
                 </svg> <label>Confirmar</label>
             </button>  
+            </form>
             <a href="#" class="button"></a>
             <a href="#" class="button"></a>
             <a href="/operacions" class="button" id="red-button">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:#ff0000;"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-                <label>Cancelar</label>
+                <label>Cancel·lar</label>
             </a>
-        </div>
+            </div>
     </div>
 
 </body>

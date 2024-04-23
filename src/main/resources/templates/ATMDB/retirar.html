@@ -18,7 +18,7 @@
 
         <div class="column" id="form-column">  
             <h3>RETIRAR DINERS</h3>            
-            <form th:action = "@{/retirar}" th:object ="${diners}" method="POST">
+            <form th:action = "@{/ATM/retirar}" th:object ="${diners}" method="POST">
                 Quantitat: <input type="text" name="quantitat" th:field="*{quantitat}">
             
             

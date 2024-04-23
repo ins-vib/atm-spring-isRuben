@@ -98,6 +98,14 @@ public class Banc {
         return null;
     }
 
+    public String[] getNumCompte(){
+        String numero[]= new String[this.llistaComptes.length];
+        for (int i = 0; i < llistaComptes.length; i++) {
+            numero [i] = llistaComptes[i].getNumero();
+        }
+        return numero;
+    }
+
 
     
 }

@@ -7,7 +7,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 
-@Entity 
+@Entity
 public class Targeta {
     public static int MAX_INTENTS = 3;
     @Id
@@ -26,22 +26,10 @@ public class Targeta {
         return compteCorrent;
     }
 
-    public boolean validarPin(String string) {
+    public boolean validarPin(int pin) {
         
         if (this.bloquejada) return false;
-        if(string==this.pin){
-            this.numIntents=0;
-         return true; 
-        }
-        this.numIntents++;
-        if (this.numIntents==MAX_INTENTS) this.bloquejada = true;
-            return false;
-        }
-
-        public boolean validarPin2(int string) {
-        
-        if (this.bloquejada) return false;
-        if(string==this.pin){
+        if(pin==this.pin){
             this.numIntents=0;
          return true; 
         }
@@ -113,8 +101,7 @@ public class Targeta {
     }
     public void setNumIntents(int numIntents) {
         this.numIntents = numIntents;
-    }
-
+    } 
 
 
 }

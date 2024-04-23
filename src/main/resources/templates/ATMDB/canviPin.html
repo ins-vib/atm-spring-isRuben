@@ -8,7 +8,7 @@
 </head>
 <body>
   
-    <div class="container1">
+    <div class="container">
         <div class="column" id="buttons-column-1">
             <div class="button"></div>
             <div class="button"></div>
@@ -17,32 +17,33 @@
          </div>
 
         <div class="column" id="form-column">              
-            <table style="width: 100%; border-collapse: collapse; font-size: 12px;">
-                <thead style="border: 1px solid #000000;">
-                    <tr>
-                        <th style="padding: 10px;">Data</th>
-                        <th style="padding: 10px;">Descripció</th>
-                    </tr>
-                </thead>
-                <tbody style="border: 1px solid #000000;">
-                    <tr th:each="operacio: ${operacio}">
-                        <td style="padding: 4px;" th:text="${operacio.data}"></td>
-                        <td style="padding: 4px;" th:text="${operacio.descripcio}"></td>
-                    </tr>
-                </tbody>
-            </table>
+            <h2>Cambio de PIN</h2>
+            <form th:action="@{/ATM/canviPin}" th:object="${credencials}" method="post">
+                <div>
+                    <label for="pinActual">PIN actual:</label>
+                    <input type="password" id="pinActual" name="pinActual" th:field="*{PIN}" required>
+                </div>
+                <div>
+                    <label for="nuevoPin">Nuevo PIN:</label>
+                    <input type="password" id="nuevoPin" name="nuevoPin" th:field="*{nouPin}" required>
+                </div>
+                <label th:if="${missatge}" th:text="${missatge}"></label>   
         </div>
 
         <div class="column" id="buttons-column-3">           
-            <a href="#" class="button"></a>
+            <button type="submit" class="button" id="green-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:#006400;"><circle cx="12" cy="12" r="10"></circle>
+            </svg> <label>Confirmar</label></button>
+        </form>
             <a href="#" class="button"></a>
             <a href="#" class="button"></a>
             <a href="/ATM/operacions" class="button" id="red-button">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:#ff0000;"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
                 <label>Cancel·lar</label>
             </a>
-        </div>
+            </div>
     </div>
 
 </body>
 </html>
+
+

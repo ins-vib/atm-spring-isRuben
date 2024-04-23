@@ -3,8 +3,14 @@ package com.daw.atm.models.DTO;
 public class Credencials {
     private String number;
     private String PIN;
-    private String nuevoPIN;
+    private String nouPin;
 
+    public String getNouPin() {
+        return nouPin;
+    }
+    public void setNouPin(String nouPin) {
+        this.nouPin = nouPin;
+    }
     public String getNumber() {
         return number;
     }
@@ -14,21 +20,11 @@ public class Credencials {
     public String getPIN() {
         return PIN;
     }
-
-    @Override
-    public String toString() {
-        return "Credencials [number=" + number + ", PIN=" + PIN + "]";
-    }
-
     public void setPIN(String pIN) {
         PIN = pIN;
     }
-
-    public String getNuevoPIN() {
-        return nuevoPIN;
-    }
-    
-    public void setNuevoPIN(String nuevoPIN) {
-        this.nuevoPIN = nuevoPIN;
+    @Override
+    public String toString() {
+        return "Credencials [number=" + number + ", PIN=" + PIN + "]";
     }
 }

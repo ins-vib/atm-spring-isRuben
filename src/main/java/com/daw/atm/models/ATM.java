@@ -9,13 +9,20 @@ public class ATM {
     private String estat;
 
     private Banc banc;
+    
+    public Banc getBanc() {
+        return banc;
+    }
+
     private Targeta targetaActual;
 
-    private Diposit llistaDiposit[];
+    
 
     public Targeta getTargetaActual() {
         return targetaActual;
     }
+
+    private Diposit llistaDiposit[];
 
     public boolean assignarTargeta(String numero, int PIN) {
         
@@ -114,17 +121,23 @@ public class ATM {
         return targetaActual.getCompteCorrent().transferencia(null, quantitat);
     }
 
-    public boolean cambiarPin(int pinActual, int nuevoPinValue) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'cambiarPin'");
+    public boolean canviPin(String numeroTarjeta, int pinAnterior, int nouPin) {
+        if (this.targetaActual != null && this.targetaActual.getNumero().equals(numeroTarjeta) && this.targetaActual.getPin() == pinAnterior) {
+            this.targetaActual.setPin(nouPin);
+            return true;
+        }
+        return false;
     }
 
-   
+    public boolean cambiarPin(int pinActual, int nuevoPin) {
+    // Verificar si la tarjeta actual está asignada y si el PIN actual coincide
+    if (targetaActual == null || !targetaActual.validarPin(pinActual)) {
+        return false;
+    }
 
+    // Cambiar el PIN de la tarjeta
+    targetaActual.setPin(nuevoPin);
+    return true;
+}
 
-    
-
-    
-    
-    
 }

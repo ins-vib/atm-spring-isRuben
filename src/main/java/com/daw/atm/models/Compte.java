@@ -2,26 +2,26 @@ package com.daw.atm.models;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
-
 import jakarta.persistence.InheritanceType;
-
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Transient;
-
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public abstract class Compte{
+public abstract class Compte {
     
     //atributs
     @Id
     protected String numero;
     protected double saldo;
     protected LocalDate DataObertura;
+
 
     @ManyToOne
     protected Client propietari;
@@ -33,18 +33,34 @@ public abstract class Compte{
     @Transient
     protected ArrayList<Operacio> llistaMoviments;
 
-    public boolean transferencia(Compte desti, double quantitat) {
-        if(this.retirar(quantitat)) {
-        return true;
-        }
-        return false;
+    @OneToMany(mappedBy = "compte")
+    protected List<Operacio> moviments= new ArrayList<Operacio>();
+
+    public List<Operacio> getMoviments() {
+        return moviments;
+    }
+
+    public void setMoviments(List<Operacio> moviments) {
+        this.moviments = moviments;
     }
 
     public ArrayList<Operacio> getLlistaMoviments() {
         return llistaMoviments;
     }
 
-    public Persona getPropietari() {
+    public boolean transferencia(Compte desti, double quantitat) {
+        if(this.retirar(quantitat)) {
+            desti.ingressar(quantitat);
+            Operacio operacio = new Operacio();
+            operacio.setDescripcio("Transferència de "+quantitat+" euros al compte "+desti);
+        llistaMoviments.add(operacio);
+        System.out.println(operacio);
+        return true;
+        }
+        return false;
+    }
+
+    public Client getPropietari() {
         return propietari;
     }
     public void setPropietari(Client propietari) {
@@ -95,14 +111,17 @@ public abstract class Compte{
             System.out.println(operacio);
         }
     }
-
     
 
-    public void ingressar(int quantitat){
+    public void ingressar(double quantitat){
         this.saldo= this.saldo +quantitat;
-        Operacio op = new Operacio();
-        op.setDescripcio("Ingres de" + quantitat + "€");
-        llistaMoviments.add(op);
+
+        Operacio operacio = new Operacio();
+
+        operacio.setDescripcio("Ingrés de "+quantitat+" euros");
+        llistaMoviments.add(operacio);
+        System.out.println(operacio);
+
     }
     public boolean retirar(double quantitat){
         if (quantitat>saldo) {
@@ -110,27 +129,17 @@ public abstract class Compte{
         }
         else{
             this.saldo = this.saldo - quantitat;
-            Operacio op = new Operacio();
-            op.setDescripcio("Retir de" + quantitat + "€");
-            llistaMoviments.add(op);
-            System.out.println(op);
+            Operacio operacio = new Operacio();
+            operacio.setDescripcio("Retir de "+quantitat+" euros");
+            llistaMoviments.add(operacio);
+            System.out.println(operacio);
             return true;
         }
-    }
-
-    public boolean transferencia(Compte desti, int quantitat) {
-        if(this.retirar(quantitat)){
-            desti.ingressar(quantitat);
-            Operacio op = new Operacio();
-            op.setDescripcio("Transferencia de " + quantitat + "€ - Compte " + desti);
-            llistaMoviments.add(op);
-            return true;
-        }
-        return false;
+        
     }
 
     public Compte(){
-        llistaMoviments = new ArrayList<Operacio>();
+        llistaMoviments= new ArrayList<Operacio>();
     }
     
     

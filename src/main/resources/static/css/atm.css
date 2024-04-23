@@ -13,7 +13,13 @@ body {
 
 .container {
     display: flex;
-    max-width: 900px;
+    max-width: 1000px;
+    width: 100%;
+}
+
+.container1 {
+    display: flex;
+    max-width: 1500px;
     width: 100%;
 }
 

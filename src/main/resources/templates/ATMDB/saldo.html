@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -17,17 +18,25 @@
          </div>
 
         <div class="column" id="form-column">              
-            <table style="width: 100%; border-collapse: collapse; font-size: 12px;">
-                <thead style="border: 1px solid #000000;">
+            <table style="width: 100%;">
+                <thead>
                     <tr>
-                        <th style="padding: 10px;">Data</th>
-                        <th style="padding: 10px;">Descripció</th>
+                        <th style="padding: 4px;">Numero Compte</th>
+                        <th style="padding: 4px;">Saldo (€)</th>
                     </tr>
                 </thead>
-                <tbody style="border: 1px solid #000000;">
-                    <tr th:each="operacio: ${operacio}">
-                        <td style="padding: 4px;" th:text="${operacio.data}"></td>
-                        <td style="padding: 4px;" th:text="${operacio.descripcio}"></td>
+                <tbody>
+                    <tr th:if = "${comptes.empty}">
+                        <td colspan="2">No s'han trobat comptes.</td>
+                    </tr>
+                    <tr th:each ="compte : ${comptes}">
+                        <td style="padding: 4px;"><span th:text="${compte.numero}"></span></td>
+                        <td style="padding: 4px;"><span th:text="${compte.saldo}"></span></td>
+                        <td style="padding: 4px;"><span></span></td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 4px;">Saldo total: </td>
+                        <td style="padding: 4px;"><span th:text="${saldo}"></span></td>
                     </tr>
                 </tbody>
             </table>
@@ -41,8 +50,10 @@
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:#ff0000;"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
                 <label>Cancel·lar</label>
             </a>
-        </div>
+            </div>
     </div>
 
 </body>
 </html>
+
+

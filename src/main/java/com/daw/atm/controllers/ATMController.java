@@ -2,11 +2,14 @@ package com.daw.atm.controllers;
 
 import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
 import com.daw.atm.models.ATM;
 import com.daw.atm.models.Operacio;
 import com.daw.atm.models.DTO.Credencials;
@@ -135,26 +138,30 @@ public class ATMController {
         return "moviments";
     }
 
-    @GetMapping("/cambiarPin")
-    public String mostrarFormularioCambiarPin(Model model) {
+   @GetMapping("/cambiarpin")
+    public String mostrarFormularioCambioPin(Model model) {
         model.addAttribute("nuevoPin", new NuevoPin());
-        return "cambiar_pin";
+        return "cambiarpin";
     }
 
-    @PostMapping("/cambiarPin")
+    // Método POST para procesar el cambio de PIN
+    @PostMapping("/cambiarpin")
     public String procesarCambioPin(@ModelAttribute NuevoPin nuevoPin, Model model) {
         try {
-            int pinActual = Integer.parseInt(nuevoPin.getPinActual());
-            int nuevoPinValue = Integer.parseInt(nuevoPin.getNuevoPin());
-
-            if (atm.cambiarPin(pinActual, nuevoPinValue)) {
-                model.addAttribute("missatge", "(PIN) Cambiado Exitosamente!");
+            // Convertir el nuevo PIN a entero
+            int nuevoPinInt = Integer.parseInt(nuevoPin.getNuevoPin());
+            // Llamar al método para cambiar el PIN en el ATM
+            boolean cambioExitoso = atm.cambiarPin(nuevoPinInt);
+            if (cambioExitoso) {
+                model.addAttribute("mensaje", "El PIN se cambió correctamente.");
             } else {
-                model.addAttribute("missatge", "(PIN) No se pudo cambiar. Verifica tus credenciales!");
+                model.addAttribute("mensaje", "No se pudo cambiar el PIN. Inténtalo de nuevo.");
             }
         } catch (NumberFormatException e) {
-            model.addAttribute("missatge", "(PIN) Debe ser numérico!");
+            model.addAttribute("mensaje", "El nuevo PIN debe ser un número.");
         }
-        return "cambiar_pin";
+        return "cambiarpin";
     }
 }
+
+

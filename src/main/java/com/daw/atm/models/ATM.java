@@ -8,9 +8,9 @@ public class ATM {
     private String adreça;
     private String estat;
 
-    private Banc banc;
+    private static Banc banc;
     
-    public Banc getBanc() {
+    public static Banc getBanc() {
         return banc;
     }
 
@@ -108,10 +108,10 @@ public class ATM {
     public ATM() {
         this.banc = new Banc();
         llistaDiposit = new Diposit[4];
-        llistaDiposit[0] = new Diposit(5, 100);
-        llistaDiposit[1] = new Diposit(10, 50);
-        llistaDiposit[2] = new Diposit(20, 80);
-        llistaDiposit[3] = new Diposit(50, 75);
+        llistaDiposit[0] = new Diposit(50, 75);
+        llistaDiposit[1] = new Diposit(20, 80);
+        llistaDiposit[2] = new Diposit(10, 50);
+        llistaDiposit[3] = new Diposit(5, 100);
     }
 
     public boolean transferencia(double quantitat, String numero) {
@@ -121,23 +121,9 @@ public class ATM {
         return targetaActual.getCompteCorrent().transferencia(null, quantitat);
     }
 
-    public boolean canviPin(String numeroTarjeta, int pinAnterior, int nouPin) {
-        if (this.targetaActual != null && this.targetaActual.getNumero().equals(numeroTarjeta) && this.targetaActual.getPin() == pinAnterior) {
-            this.targetaActual.setPin(nouPin);
-            return true;
-        }
-        return false;
+    public boolean cambiarPin(int nuevoPinInt) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'cambiarPin'");
     }
-
-    public boolean cambiarPin(int pinActual, int nuevoPin) {
-    // Verificar si la tarjeta actual está asignada y si el PIN actual coincide
-    if (targetaActual == null || !targetaActual.validarPin(pinActual)) {
-        return false;
-    }
-
-    // Cambiar el PIN de la tarjeta
-    targetaActual.setPin(nuevoPin);
-    return true;
-}
 
 }

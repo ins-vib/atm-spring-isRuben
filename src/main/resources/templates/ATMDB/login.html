@@ -23,7 +23,15 @@
                 PIN <input type="text" name="PIN" th:field="*{PIN}"> <br>
             
             
-            <label th:if="${missatge}" th:text="${missatge}"></label>           
+            <label th:if="${missatge}" th:text="${missatge}"></label>   
+            <table style="width: 100%; border: 1px solid #ddd; border-collapse: collapse; margin-top: 20px;">
+                <tr>
+                    <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Novetats</th>
+                </tr>
+                <tr th:each="novetats : ${novetats}">
+                    <td style="border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #ffffff;" th:text="${novetats}"></td>
+                </tr>
+            </table>        
         </div>
 
         <div class="column" id="buttons-column-3"> 

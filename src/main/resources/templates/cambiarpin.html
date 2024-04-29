@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cambiar PIN</title>
+</head>
+<body>
+    <h1>Cambiar PIN</h1>
+    <!-- Mostrar mensaje de éxito o error -->
+    <div th:if="${mensaje}" th:text="${mensaje}" style="color: red;"></div>
+    
+    <!-- Formulario para cambiar PIN -->
+    <form method="post" th:action="@{/cambiarpin}">
+        <label for="nuevoPin">Nuevo PIN:</label>
+        <input type="text" id="nuevoPin" name="nuevoPin" th:field="*{nuevoPin}" required>
+        <button type="submit">Cambiar PIN</button>
+    </form>
+</body>
+</html>

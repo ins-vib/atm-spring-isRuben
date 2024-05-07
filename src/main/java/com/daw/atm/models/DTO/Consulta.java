@@ -13,38 +13,45 @@ public class Consulta {
     private String nomUsuari;
     private String cognomUsuari;
     private String email;
-    private String consulta;
+    private String textc;
 
     public long getId() {
         return id;
     }
+
     public void setId(long id) {
         this.id = id;
     }
+
     public String getNomUsuari() {
         return nomUsuari;
     }
+
     public void setNomUsuari(String nomUsuari) {
         this.nomUsuari = nomUsuari;
     }
+
     public String getCognomUsuari() {
         return cognomUsuari;
     }
+
     public void setCognomUsuari(String cognomUsuari) {
         this.cognomUsuari = cognomUsuari;
     }
+
     public String getEmail() {
         return email;
     }
+
     public void setEmail(String email) {
         this.email = email;
     }
-    public String getConsulta() {
-        return consulta;
+
+    public String getTextc() {
+        return textc;
     }
-    public void setConsulta(String consulta) {
-        this.consulta = consulta;
+
+    public void setTextc(String textc) {
+        this.textc = textc;
     }
 }
-
-    

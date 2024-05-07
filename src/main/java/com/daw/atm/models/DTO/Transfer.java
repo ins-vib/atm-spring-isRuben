@@ -1,8 +1,10 @@
 package com.daw.atm.models.DTO;
 
 public class Transfer {
-    String quantitat;
-    String numero;
+    private String quantitat;
+    private String numero;
+    private String compteDesti;
+
     private String numeroTarjetaDestino;
     private int cantidad;
 
@@ -30,6 +32,13 @@ public class Transfer {
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
     }
+    public String getCompteDesti() {
+        return compteDesti;
+    }
+    public void setCompteDesti(String compteDesti) {
+        this.compteDesti = compteDesti;
+    }
+
 
 
     

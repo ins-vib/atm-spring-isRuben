@@ -1,23 +1,55 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="ca">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Transferencia</title>
+    <link th:href="@{/css/atm.css}" rel="stylesheet" />   
+    <title>Banc | Transferència</title>
 </head>
 <body>
-    <h2>Realizar Transferencia</h2>
-    <form action="#" th:action="@{/transferencia}" th:object="${transfer}" method="post">
-        <label for="numeroTarjetaDestino">Selecciona la tarjeta destino:</label>
-        <select id="numeroTarjetaDestino" name="numeroTarjetaDestino" th:field="*{numeroTarjetaDestino}" required>
-            <option value="">Seleccione una tarjeta</option>
-            <option th:each="tarjeta : ${tarjetas}" th:value="${tarjeta.numero}" th:text="${tarjeta.numero}"></option>
-        </select><br><br>
-        
-        <label for="cantidad">Cantidad a transferir:</label>
-        <input type="number" id="cantidad" name="cantidad" th:field="*{cantidad}" required><br><br>
-        
-        <button type="submit">Transferir</button>
-    </form>
+  
+    <div class="container">
+        <div class="column" id="buttons-column-1">
+            <div class="button"></div>
+            <div class="button"></div>
+            <div class="button"></div>
+            <div class="button"></div>
+         </div>
+
+        <div class="column" id="form-column">  
+            <h3 style="text-align: center; height: auto;">TRANSFERIR</h3>            
+            <form th:action="@{/ATM/transferencia}" th:object="${transfer}" method="POST">
+                Quantitat: <input type="text" name="quantitat" th:field="*{quantitat}"><br>
+                Compte Origen: 
+                <select name="numero">
+                    <option th:each="compte : ${comptesUsuari}" th:value="${compte.numero}" th:text="${compte.numero}"></option>
+                </select><br>
+                Compte Destí:
+                <select name="compteDesti">
+                    <option th:each="compte : ${comptesBanc}" th:value="${compte.numero}" th:text="${compte.numero}"></option>
+                </select><br>
+                <button type="submit" class="button" id="green-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:#006400;"><circle cx="12" cy="12" r="10"></circle>
+                    </svg> <label>Confirmar</label>
+                </button>
+
+                
+            </form>
+            
+            <label th:if="${missatge}" th:text="${missatge}"></label>
+        </div>
+        <div class="column" id="buttons-column-3">   
+            <a href="#" class="button"></a>  
+            </form>
+            <a href="#" class="button"></a>
+            <a href="#" class="button"></a>
+            <a href="/ATM/operacions" class="button" id="red-button">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:#ff0000;"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                <label>Cancel·lar</label>
+            </a>
+            </div>
+    </div>
+    </div>
+
 </body>
 </html>

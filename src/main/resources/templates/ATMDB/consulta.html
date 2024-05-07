@@ -1,31 +1,53 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulario de Consulta</title>
+    <link th:href="@{/css/atm.css}" rel="stylesheet" />   
+    <title>Banc | Consulta</title>
 </head>
 <body>
-    <h1>Formulario de Consulta</h1>
-    <form th:action="@{/ATM/consulta}" th:object="${consulta}" method="post">
-        <div>
-            <label for="nomUsuari">Nombre:</label>
-            <input type="text" th:field="*{nomUsuari}" id="nomUsuari" />
+  
+    <div class="container">
+        <div class="column" id="buttons-column-1">
+            <div class="button"></div>
+            <div class="button"></div>
+            <div class="button"></div>
+            <div class="button"></div>
+         </div>
+
+        <div class="column" id="form-column">  
+            <h3>CONSULTA</h3>            
+            <form action="/ATM/consulta" method="post">
+                <label for="nomUsuari">Nombre:</label><br>
+                <input type="text" id="nomUsuari" name="nomUsuari"><br>
+        
+                <label for="cognomUsuari">Apellido:</label><br>
+                <input type="text" id="cognomUsuari" name="cognomUsuari"><br>
+        
+                <label for="email">Correo:</label><br>
+                <input type="email" id="email" name="email"><br>
+        
+                <label for="consulta">Consulta:</label><br>
+                <textarea id="textc" name="textc"></textarea><br>
+
+                <label th:if="${missatge}" th:text="${missatge}"></label> 
         </div>
-        <div>
-            <label for="cognomUsuari">Apellido:</label>
-            <input type="text" th:field="*{cognomUsuari}" id="cognomUsuari" />
-        </div>
-        <div>
-            <label for="email">Correo electrónico:</label>
-            <input type="email" th:field="*{email}" id="email" />
-        </div>
-        <div>
-            <label for="consulta">Consulta:</label>
-            <textarea th:field="*{consulta}" id="consulta"></textarea>
-        </div>
-        <button type="submit">Enviar Consulta</button>
-    </form>
-    <p th:text="${mensaje}"></p>
+
+        <div class="column" id="buttons-column-3">   
+            <button  type="submit" class="button" id="green-button">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:#006400;"><circle cx="12" cy="12" r="10"></circle>
+                </svg> <label>Confirmar</label>
+            </button>  
+            </form>
+            <a href="#" class="button"></a>
+            <a href="#" class="button"></a>
+            <a href="/ATM/operacions" class="button" id="red-button">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:#ff0000;"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                <label>Cancel·lar</label>
+            </a>
+            </div>
+    </div>
+
 </body>
 </html>

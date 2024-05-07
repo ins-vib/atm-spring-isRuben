@@ -23,6 +23,7 @@ import com.daw.atm.models.DTO.Consulta;
 import com.daw.atm.models.DTO.Credencials;
 import com.daw.atm.models.DTO.Diners;
 import com.daw.atm.models.DTO.Transfer;
+import com.daw.atm.repositories.CompteCor;
 import com.daw.atm.repositories.ConsultaRepository;
 import com.daw.atm.repositories.OperacioRepository;
 import com.daw.atm.repositories.TargetaRepository;
@@ -39,6 +40,9 @@ public class ATMControllerDB {
     @Autowired
     OperacioRepository operacioRepository;
     
+    @Autowired
+    CompteCor compteRepository;
+
     List<String> novetats;
 
     private Diposit llistaDiposit[];
@@ -191,35 +195,77 @@ public class ATMControllerDB {
     }
     
     @GetMapping("/transferencia")
-public String transferencia(Model model, HttpSession session) {
-    String numeroTarjetaActual = (String) session.getAttribute("numeroTarjetaActual");
-    //List<Targeta> tarjetas = targetaRepository.findAllById(numeroTarjetaActual);
-    //model.addAttribute("tarjetas", tarjetas);
-    model.addAttribute("transfer", new Transfer());
-    return "ATMDB/transferencia";
-}
+    public String transferencia(Model model, HttpSession session) {
+        String numeroTargetaActual = (String) session.getAttribute("numeroTargetaActual");
+        Optional<Targeta> optional = targetaRepository.findById(numeroTargetaActual);
+        Targeta targetaActual = optional.orElse(null);
 
-@PostMapping("/transferencia")
-public String realizarTransferencia(@ModelAttribute Transfer transfer, Model model, HttpSession session) {
-    String numeroTarjetaActual = (String) session.getAttribute("numeroTarjetaActual");
-    Optional<Targeta> optionalTarjetaOrigen = targetaRepository.findById(numeroTarjetaActual);
-    Optional<Targeta> optionalTarjetaDestino = targetaRepository.findById(transfer.getNumeroTarjetaDestino());
+        if (targetaActual == null) {
+            return "redirect:/ATM/";
+        }
 
-    if (optionalTarjetaOrigen.isPresent() && optionalTarjetaDestino.isPresent()) {
-        Targeta tarjetaOrigen = optionalTarjetaOrigen.get();
-        Targeta tarjetaDestino = optionalTarjetaDestino.get();
-        int cantidad = transfer.getCantidad();
+        model.addAttribute("transfer", new Transfer());
+        model.addAttribute("comptesUsuari", targetaActual.getCompteCorrent().getPropietari().getComptes());
+        model.addAttribute("comptesBanc", compteRepository.findAll());
 
-        tarjetaOrigen.getCompteCorrent().retirar(cantidad);
-        tarjetaDestino.getCompteCorrent().ingressar(cantidad);
-
-        targetaRepository.save(tarjetaOrigen);
-        targetaRepository.save(tarjetaDestino);
+        return "ATMDB/transferencia";
     }
 
-    return "redirect:/transferencia";
-}
+    @PostMapping("/transferencia")
+public String processarTransferencia(@ModelAttribute Transfer transferencia, Model model, HttpSession session) {
 
+    try {
+        String numeroTargetaActual = (String) session.getAttribute("numeroTargetaActual");
+        Optional<Targeta> optional = targetaRepository.findById(numeroTargetaActual);
+        Targeta targetaActual = optional.orElse(null);
+
+        if (targetaActual == null) {
+            return "redirect:/ATM/";
+        }
+
+        
+        double quantitat = Double.parseDouble(transferencia.getQuantitat());
+        String compteOrigenNumero = transferencia.getNumero();
+        String compteDestiNumero = ((Transfer) transferencia).getCompteDesti();
+
+        
+        Optional<Compte> optionalCompteOrigen = compteRepository.findByNumero(compteOrigenNumero);
+        Optional<Compte> optionalCompteDesti = compteRepository.findByNumero(compteDestiNumero);
+
+        if (!optionalCompteOrigen.isPresent() || !optionalCompteDesti.isPresent()) {
+            return "redirect:/ATM/";
+        }
+
+        Compte compteOrigen = optionalCompteOrigen.get();
+        Compte compteDesti = optionalCompteDesti.get();
+
+        if (compteOrigen.getSaldo() >= quantitat) {
+            compteOrigen.retirar(quantitat);
+            compteDesti.ingressar(quantitat);
+
+            
+            compteRepository.save(compteOrigen);
+            compteRepository.save(compteDesti);
+
+            
+            model.addAttribute("missatge", "Transferència realitzada amb èxit");
+
+            
+            Operacio operacio = new Operacio();
+            operacio.setDescripcio("Transferencia de " + quantitat + "€ del compte " + compteOrigenNumero + " al compte " + compteDestiNumero);
+            operacio.setCompte(targetaActual.getCompteCorrent());
+            operacioRepository.save(operacio);
+        } else {
+            model.addAttribute("missatge", "Saldo insuficient en el compte origen");
+        }
+    } catch (Exception e) {
+        
+        model.addAttribute("missatge", "Error en processar la transferència: " + e.getMessage());
+    }
+    
+    return "ATMDB/transferencia";
+
+}
 
 
     @GetMapping("/retirar")
@@ -338,7 +384,7 @@ public String realizarTransferencia(@ModelAttribute Transfer transfer, Model mod
     @PostMapping("/consulta")
     public String procesarConsulta(@ModelAttribute Consulta consulta, Model model) {
         consultaRepository.save(consulta);
-        model.addAttribute("mensaje", "La consulta se ha enviado correctamente.");
+        model.addAttribute("missatge", "La consulta se ha enviado correctamente.");
         return "ATMDB/consulta";
     }
 

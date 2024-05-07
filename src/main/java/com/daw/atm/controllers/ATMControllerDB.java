@@ -1,9 +1,7 @@
 package com.daw.atm.controllers;
 
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -336,7 +334,7 @@ public String processarTransferencia(@ModelAttribute Transfer transferencia, Mod
     return "ATMDB/canviPin";
 }
     @GetMapping("/saldo")
-    public String saldo(Model model, HttpSession session){
+    public String saldo(Model model, HttpSession session) {
         String numeroTargetaActual= (String)session.getAttribute("numeroTargetaActual");
         Optional<Targeta> optional = targetaRepository.findById(numeroTargetaActual);
         Targeta targetaActual= optional.get();
@@ -344,7 +342,7 @@ public String processarTransferencia(@ModelAttribute Transfer transferencia, Mod
         System.out.println(client.getComptes().toString());
         List<Compte> comptes= client.getComptes();
         model.addAttribute("comptes", client.getComptes());
-        double saldo=0;
+        double saldo = 0;
         
         for (int i = 0; i < comptes.size(); i++) {
             saldo= saldo +(comptes.get(i).getSaldo());
@@ -366,6 +364,12 @@ public String processarTransferencia(@ModelAttribute Transfer transferencia, Mod
     return "ATMDB/moviments";
   }
 
+  @GetMapping("/logout")
+    public String logout(Model model, HttpSession session){
+        session.invalidate();
+        return "redirect:/ATM/";
+    }
+    
    @Autowired
     private ConsultaRepository consultaRepository;
 

@@ -53,7 +53,7 @@ public abstract class Persona {
     }
 
     public Persona() {
-        System.out.println("Sóc una persona");
+        System.out.println();
     }
 
     @Override

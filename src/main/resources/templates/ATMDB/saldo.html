@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -18,24 +17,23 @@
          </div>
 
         <div class="column" id="form-column">              
-            <table style="width: 100%;">
-                <thead>
+            <table style="width: 100%; border-collapse: collapse; font-size: 12px;">
+                <thead style="border: 1px solid #000000;">
                     <tr>
-                        <th style="padding: 4px;">Numero Compte</th>
-                        <th style="padding: 4px;">Saldo (€)</th>
+                        <th style="padding: 10px;">Numero Compte</th>
+                        <th style="padding: 10px;">Saldo (€)</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr th:if = "${comptes.empty}">
+                <tbody style="border: 1px solid #000000;">
+                    <tr th:if="${comptes.empty}">
                         <td colspan="2">No s'han trobat comptes.</td>
                     </tr>
-                    <tr th:each ="compte : ${comptes}">
+                    <tr th:each="compte : ${comptes}">
                         <td style="padding: 4px;"><span th:text="${compte.numero}"></span></td>
                         <td style="padding: 4px;"><span th:text="${compte.saldo}"></span></td>
-                        <td style="padding: 4px;"><span></span></td>
                     </tr>
                     <tr>
-                        <td style="padding: 4px;">Saldo total: </td>
+                        <td style="padding: 4px;">Saldo total:</td>
                         <td style="padding: 4px;"><span th:text="${saldo}"></span></td>
                     </tr>
                 </tbody>
@@ -55,5 +53,3 @@
 
 </body>
 </html>
-
-

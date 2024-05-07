@@ -1,3 +1,4 @@
+delete from consulta;
 delete from operacio;
 delete from targeta;
 delete from compte_estalvi;

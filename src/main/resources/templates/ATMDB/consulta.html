@@ -32,6 +32,22 @@
                 <textarea id="textc" name="textc"></textarea><br>
 
                 <label th:if="${missatge}" th:text="${missatge}"></label> 
+                <table style="width: 100%; border: 1px solid #ddd; border-collapse: collapse; margin-top: 20px;">
+                    <tr>
+                        <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Nombre</th>
+                        <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Apellido</th>
+                        <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Correo</th>
+                        <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Consulta</th>
+                    </tr>
+                    <tr th:each="consulta : ${consultas}">
+                        <td style="border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #ffffff;" th:text="${consulta.nomUsuari}"></td>
+                        <td style="border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #ffffff;" th:text="${consulta.cognomUsuari}"></td>
+                        <td style="border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #ffffff;" th:text="${consulta.email}"></td>
+                        <td style="border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #ffffff;" th:text="${consulta.textc}"></td>
+                    </tr>
+                </table>
+                
+
         </div>
 
         <div class="column" id="buttons-column-3">   

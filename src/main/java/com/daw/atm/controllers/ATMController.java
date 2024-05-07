@@ -42,11 +42,11 @@ public class ATMController {
             int PIN = Integer.parseInt(credencials.getPIN());
             boolean ok = atm.assignarTargeta(credencials.getNumber(), PIN);
             if (!ok) {
-                model.addAttribute("missatge", "Error en les credencials");
+                model.addAttribute("missatge", "(ERR0R) Credencials.");
                 return "login";
             }
         } catch (Exception e) {
-            model.addAttribute("missatge", "Error en el PIN, ha de ser numeric");
+            model.addAttribute("missatge", "(ERR0R) PIN ha de ser numeric.");
             return "login";
         }
         return "redirect:/operacions";
@@ -70,9 +70,9 @@ public class ATMController {
         try {
             int quantitat = Integer.parseInt(diners.getQuantitat());
             atm.ingressar(quantitat);
-            model.addAttribute("missatge", "S'ha realitzat el ingrés");
+            model.addAttribute("missatge", "S'ha realitzat el ingrés.");
         } catch (Exception e) {
-            model.addAttribute("missatge", "Quantitat ha de ser un enter");
+            model.addAttribute("missatge", "(ERR0R) Quantitat ha de ser un enter.");
         }
         return "ingressar";
     }
@@ -88,9 +88,9 @@ public class ATMController {
         try {
             int quantitat = Integer.parseInt(diners.getQuantitat());
             atm.retirar(quantitat);
-            model.addAttribute("missatge", "S'han tret els diners");
+            model.addAttribute("missatge", "S'han tret els diners.");
         } catch (Exception e) {
-            model.addAttribute("missatge", "Quantitat ha de ser un enter");
+            model.addAttribute("missatge", "(ERR0R) Quantitat ha de ser un enter.");
         }
         return "retirar";
     }
@@ -98,7 +98,7 @@ public class ATMController {
     @GetMapping("/transferencia")
     public String transferencia(Model model) {
         model.addAttribute("transfer", new Transfer());
-        String llistacomptes[] =atm.getBanc().getNumCompte();
+        String llistacomptes[] = atm.getBanc().getNumCompte();
         model.addAttribute("llistacomptes", llistacomptes);
         return "transferencia";
     }
@@ -116,10 +116,13 @@ public class ATMController {
             else{
                 model.addAttribute("missatge","(ERR0R) Operació incorrecta");
             }
-        } catch (Exception e) {
+        } 
+        
+        catch (Exception e) {
             model.addAttribute("transfer", "(ERR0R) Transferència.");
         }
-        String llistacomptes[]=atm.getBanc().getNumCompte();
+
+        String llistacomptes[] = atm.getBanc().getNumCompte();
         model.addAttribute("llistacomptes", llistacomptes);
         return "transferencia";
     }
@@ -144,21 +147,21 @@ public class ATMController {
         return "cambiarpin";
     }
 
-    // Método POST para procesar el cambio de PIN
     @PostMapping("/cambiarpin")
     public String procesarCambioPin(@ModelAttribute NuevoPin nuevoPin, Model model) {
         try {
-            // Convertir el nuevo PIN a entero
             int nuevoPinInt = Integer.parseInt(nuevoPin.getNuevoPin());
-            // Llamar al método para cambiar el PIN en el ATM
             boolean cambioExitoso = atm.cambiarPin(nuevoPinInt);
             if (cambioExitoso) {
-                model.addAttribute("mensaje", "El PIN se cambió correctamente.");
-            } else {
-                model.addAttribute("mensaje", "No se pudo cambiar el PIN. Inténtalo de nuevo.");
+                model.addAttribute("missatge", "(PIN) El PIN s'ha canviat correctament.");
+            } 
+            
+            else {
+                model.addAttribute("missatge", "(PIN) No es pot cambiar el PIN. Intenta un altre vegada.");
             }
+
         } catch (NumberFormatException e) {
-            model.addAttribute("mensaje", "El nuevo PIN debe ser un número.");
+            model.addAttribute("missatge", "(PIN) El PIN te que ser un numero.");
         }
         return "cambiarpin";
     }

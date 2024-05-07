@@ -1,6 +1,11 @@
 package com.daw.atm.controllers;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -44,26 +49,27 @@ public class ATMControllerDB {
     CompteCor compteRepository;
 
     List<String> novetats;
+    List<String> consulta;
 
     private Diposit llistaDiposit[];
 
-    public ATMControllerDB(){
+    public ATMControllerDB() {
         novetats = new ArrayList<String>();
+        consulta = new ArrayList<String>();
+
         llistaDiposit = new Diposit[4];
         System.out.println("constructor del controlador");
-        try{
+        try {
         llistaDiposit = new Diposit[4];
         llistaDiposit[0] = new Diposit(50, 75);
         llistaDiposit[1] = new Diposit(20, 80);
         llistaDiposit[2] = new Diposit(10, 50);
         llistaDiposit[3] = new Diposit(5, 100);
 
-
             File f = new File("novetats.txt");
             if(f.exists()){
                 System.out.println("Existeix l'arxiu");
                 Scanner lectorFitxer = new Scanner(f);
-
 
                 String linia;
                 while(lectorFitxer.hasNextLine()) {
@@ -74,11 +80,11 @@ public class ATMControllerDB {
             }
             lectorFitxer.close();
         }
-            else{
+            else {
                 System.out.println("(ERR0R) No existeix l'Arxiu");
             }
         }
-        catch(Exception exception){
+        catch(Exception exception) {
             System.out.println("(ERR0R) No es pot accedir al fitxer");
         }
     }
@@ -134,7 +140,6 @@ public class ATMControllerDB {
         }
         
         //return "redirect:/operacions";
-
         
     }
 
@@ -188,8 +193,6 @@ public class ATMControllerDB {
         catch (Exception e) {
             model.addAttribute("missatge", "(ERR0R) Quantitat ha de ser Enter.");
         }
-
-        
         
         return "ATMDB/ingressar";
     }
@@ -222,13 +225,10 @@ public String processarTransferencia(@ModelAttribute Transfer transferencia, Mod
         if (targetaActual == null) {
             return "redirect:/ATM/";
         }
-
         
         double quantitat = Double.parseDouble(transferencia.getQuantitat());
         String compteOrigenNumero = transferencia.getNumero();
         String compteDestiNumero = ((Transfer) transferencia).getCompteDesti();
-
-        
         Optional<Compte> optionalCompteOrigen = compteRepository.findByNumero(compteOrigenNumero);
         Optional<Compte> optionalCompteDesti = compteRepository.findByNumero(compteDestiNumero);
 
@@ -246,19 +246,20 @@ public String processarTransferencia(@ModelAttribute Transfer transferencia, Mod
             
             compteRepository.save(compteOrigen);
             compteRepository.save(compteDesti);
-
-            
             model.addAttribute("missatge", "Transferència realitzada amb èxit");
-
-            
             Operacio operacio = new Operacio();
             operacio.setDescripcio("Transferencia de " + quantitat + "€ del compte " + compteOrigenNumero + " al compte " + compteDestiNumero);
             operacio.setCompte(targetaActual.getCompteCorrent());
             operacioRepository.save(operacio);
-        } else {
+        } 
+        
+        else {
             model.addAttribute("missatge", "Saldo insuficient en el compte origen");
         }
-    } catch (Exception e) {
+
+    } 
+    
+    catch (Exception e) {
         
         model.addAttribute("missatge", "Error en processar la transferència: " + e.getMessage());
     }
@@ -266,8 +267,6 @@ public String processarTransferencia(@ModelAttribute Transfer transferencia, Mod
     return "ATMDB/transferencia";
 
 }
-
-
     @GetMapping("/retirar")
     public String retirar(Model model) {
         model.addAttribute("diners", new Diners());
@@ -287,7 +286,6 @@ public String processarTransferencia(@ModelAttribute Transfer transferencia, Mod
         System.out.println(targetaActual.getCompteCorrent());
         targetaRepository.save(targetaActual);
         model.addAttribute("missatge", "S'han Retirat els diners!");
-
         Operacio operacio = new Operacio();
         operacio.setDescripcio("Retir de "+quantitat+"€");
         operacio.setCompte(targetaActual.getCompteCorrent());
@@ -317,7 +315,6 @@ public String processarTransferencia(@ModelAttribute Transfer transferencia, Mod
         Optional<Targeta> optional = targetaRepository.findById(numeroTargetaActual);
         
             Targeta targetaActual = optional.get();
-            
             String pinActualString = String.valueOf(targetaActual.getPin());
             
             if (!pinActualString.equals(nouPinString)) {
@@ -340,11 +337,9 @@ public String processarTransferencia(@ModelAttribute Transfer transferencia, Mod
 }
     @GetMapping("/saldo")
     public String saldo(Model model, HttpSession session){
-    
-    String numeroTargetaActual= (String)session.getAttribute("numeroTargetaActual");
+        String numeroTargetaActual= (String)session.getAttribute("numeroTargetaActual");
         Optional<Targeta> optional = targetaRepository.findById(numeroTargetaActual);
         Targeta targetaActual= optional.get();
-
         Client client= targetaActual.getCompteCorrent().getPropietari();
         System.out.println(client.getComptes().toString());
         List<Compte> comptes= client.getComptes();
@@ -363,10 +358,9 @@ public String processarTransferencia(@ModelAttribute Transfer transferencia, Mod
 
     @GetMapping("/moviments")
     public String moviments(Model model, HttpSession session){
-    String numeroTargetaActual= (String)session.getAttribute("numeroTargetaActual");
+        String numeroTargetaActual= (String)session.getAttribute("numeroTargetaActual");
         Optional<Targeta> optional = targetaRepository.findById(numeroTargetaActual);
         Targeta targetaActual= optional.get();
-
         List<Operacio> operacio= targetaActual.getCompteCorrent().getMoviments();
         model.addAttribute("operacio", operacio);
     return "ATMDB/moviments";
@@ -376,7 +370,7 @@ public String processarTransferencia(@ModelAttribute Transfer transferencia, Mod
     private ConsultaRepository consultaRepository;
 
     @GetMapping("/consulta")
-    public String mostrarFormularioConsulta(Model model) {
+    public String mostrarFormulariConsulta(Model model) {
         model.addAttribute("consulta", new Consulta());
         return "ATMDB/consulta";
     }
@@ -384,9 +378,37 @@ public String processarTransferencia(@ModelAttribute Transfer transferencia, Mod
     @PostMapping("/consulta")
     public String procesarConsulta(@ModelAttribute Consulta consulta, Model model) {
         consultaRepository.save(consulta);
-        model.addAttribute("missatge", "La consulta se ha enviado correctamente.");
+        guardarConsultaEnArxiu(consulta);
+        List<Consulta> consultas = consultaRepository.findAll();
+        model.addAttribute("consultas", consultas);
+        model.addAttribute("missatge", "(INFO) La consulta s'ha enviat correctament.");
         return "ATMDB/consulta";
     }
 
+    private void guardarConsultaEnArxiu(Consulta consulta) {
+        String ruta = "consultas.txt";
+    
+        File archivo = new File(ruta);
+        if (!archivo.exists()) {
+            try {
+                archivo.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        
+        try (FileWriter fw = new FileWriter(archivo, true);
+             BufferedWriter bw = new BufferedWriter(fw)) {
+            bw.write("Nombre: " + consulta.getNomUsuari() + "\n");
+            bw.write("Apellido: " + consulta.getCognomUsuari() + "\n");
+            bw.write("Correo: " + consulta.getEmail() + "\n");
+            bw.write("Consulta: " + consulta.getTextc() + "\n\n");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 }
+
+
+

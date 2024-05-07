@@ -46,3 +46,14 @@ Desenvolupar una aplicació que simuli un caixer automàtic (ATM) d’un banc.
 - Gestió d’errors i excepcions
 - Codi documentat amb notació Javadoc
 - Ús de col·leccions d’objectes (ArrayList o equivalents) per a la gestió de les llistes d’objectes en memòria
+
+
+# FUNCIONALITAT EXTRA
+
+- Una pagina on pots fer un report o una consulta que anira directament a la base de dades del creador. Tens que afegir obligatoriament tots els camps per a poder fer una consulta.
+- Els camps son: Nom, Cognom, Adreça Electronica i la consulta en si.
+
+- Primer he creat en la carpeta DTO un fitxer anomenat Consulta.java on he creat cada variable de la meva base de dades (Nom, Cognom, email i textc) i he realitzat un Source Action on he afegit tots els Getters i Setters.
+- He creat un nou repositori anomenat consultaRepository per a lligarla el meu metode amb la base de dades.
+- En ATMControllerDB he creat el metode i definit la seva funcionalitat.
+- Per ultim he realitzat el html amb un disseny adecuat amb la resta del projecte i he comprobat que el funcionament sigui correcte.

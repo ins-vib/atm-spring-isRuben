@@ -57,3 +57,12 @@ Desenvolupar una aplicació que simuli un caixer automàtic (ATM) d’un banc.
 - He creat un nou repositori anomenat consultaRepository per a lligarla el meu metode amb la base de dades.
 - En ATMControllerDB he creat el metode i definit la seva funcionalitat.
 - Per ultim he realitzat el html amb un disseny adecuat amb la resta del projecte i he comprobat que el funcionament sigui correcte.
+
+# FUNCIONALITAT EXTRA FITXER
+
+- Una vegada un usuari fa una consulta aquesta no nomes es guarda automaticament en la base de dades sino que genera sota la consulta una linia en la tabla Connsultes on pots veure la teva consulta.
+
+- Faig la injecció del repositori ConsultaRepository per interactuar amb la base de dades.
+- El mètode mostrarFormularioConsulta() mostra el formulari perquè els usuaris ingressin les seves consultes.
+- El mètode procesarConsulta() guarda la consulta a la base de dades i en un fitxer de text, després recupera totes les consultes de la base de dades i les mostra juntament amb un missatge de confirmació.
+- El mètode guardarConsultaEnArchivo() escriu els detalls de la consulta en un fitxer de text anomenat "consultas.txt".
